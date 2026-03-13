@@ -41,23 +41,27 @@ const DocumentDuplicateIcon = ({ className }: { className?: string }) => (
 
 export type HederaAddressProps = {
   address?: AddressType;
+  hederaAccountId?: string;
   chain: Chain;
   format?: "short" | "long";
   disableAddressLink?: boolean;
   avatarComponent?: React.ComponentType<{ address: string; size: number; ensImage: string | null }>;
+  showEvmAddress?: boolean;
 };
 
 export const HederaAddress = ({
   address,
+  hederaAccountId,
   chain,
   format,
   disableAddressLink,
   avatarComponent: AvatarComponent,
+  showEvmAddress = true,
 }: HederaAddressProps) => {
   const [copied, setCopied] = useState(false);
   const { accountId, isLoading } = useHederaAccountId(address, chain.id);
 
-  if (!address) {
+  if (!address && !hederaAccountId) {
     return (
       <div className="flex items-center gap-2 animate-pulse">
         <div className="w-6 h-6 rounded-full bg-base-300" />
@@ -66,32 +70,48 @@ export const HederaAddress = ({
     );
   }
 
-  const checkSumAddress = getAddress(address);
-  const shortAddress = `${checkSumAddress.slice(0, 6)}...${checkSumAddress.slice(-4)}`;
-  const displayAddress = format === "long" ? checkSumAddress : shortAddress;
-  const explorerLink = getBlockExplorerAddressLink(chain, checkSumAddress);
+  const hasEvmAddress = Boolean(address);
+  const resolvedAddress = hasEvmAddress ? getAddress(address as AddressType) : undefined;
+  const resolvedAccountId = hederaAccountId ?? accountId ?? undefined;
+
+  const primaryRaw = resolvedAccountId ?? resolvedAddress!;
+  const secondaryRaw = resolvedAccountId && showEvmAddress ? resolvedAddress : undefined;
+
+  // Hedera Account ID should always display fully (no ellipsis).
+  const primaryDisplay =
+    resolvedAccountId || !resolvedAddress
+      ? primaryRaw
+      : format === "long"
+        ? primaryRaw
+        : `${primaryRaw.slice(0, 6)}...${primaryRaw.slice(-4)}`;
+
+  const secondaryDisplay =
+    secondaryRaw &&
+    (format === "long" ? secondaryRaw : `${secondaryRaw.slice(0, 6)}...${secondaryRaw.slice(-4)}`);
+
+  const explorerLink = getBlockExplorerAddressLink(chain, primaryRaw);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(checkSumAddress);
+    navigator.clipboard.writeText(primaryRaw);
     setCopied(true);
     setTimeout(() => setCopied(false), 800);
   };
 
-  const addressContent = <span className="text-sm font-normal">{displayAddress}</span>;
+  const primaryContent = <span className="text-sm font-normal">{primaryDisplay}</span>;
 
   return (
     <div className="flex flex-col items-center gap-1">
       <div className="flex items-center gap-1.5">
         {AvatarComponent ? (
-          <AvatarComponent address={checkSumAddress} size={24} ensImage={null} />
+          <AvatarComponent address={primaryRaw} size={24} ensImage={null} />
         ) : (
           <div className="w-6 h-6 rounded-full bg-base-300" />
         )}
         {disableAddressLink ? (
-          addressContent
+          primaryContent
         ) : (
           <a href={explorerLink} target="_blank" rel="noreferrer" className="link no-underline hover:underline">
-            {addressContent}
+            {primaryContent}
           </a>
         )}
         <button type="button" className="btn btn-ghost btn-xs p-0 min-h-0 h-auto" onClick={handleCopy}>
@@ -104,9 +124,16 @@ export const HederaAddress = ({
       </div>
       {isLoading ? (
         <span className="text-xs text-base-content/60 animate-pulse">Resolving Hedera Account ID…</span>
-      ) : accountId ? (
-        <span className="text-xs text-base-content/80">Hedera Account ID: {accountId}</span>
+      ) : resolvedAccountId ? (
+        <span className="text-xs text-base-content/80">
+          Hedera Account ID: {resolvedAccountId}
+        </span>
       ) : null}
+      {secondaryDisplay && (
+        <span className="text-xs text-base-content/60">
+          EVM: {secondaryDisplay}
+        </span>
+      )}
     </div>
   );
 };

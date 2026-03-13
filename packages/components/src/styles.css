@@ -3,13 +3,13 @@
 @custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
 
 @theme {
-  /* Core semantic colors */
-  --color-sui-primary: #93bbfb;
-  --color-sui-primary-subtle: #dae8ff;
-  --color-sui-primary-neutral: #f4f8ff;
-  --color-sui-primary-content: #212638;
-  --color-sui-accent: #93bbfb;
-  --color-sui-base-content: #212638;
+  /* Core semantic colors – Hedera themed (light) */
+  --color-sui-primary: #4f46e5; /* hedera violet / light primary */
+  --color-sui-primary-subtle: #e1ddff;
+  --color-sui-primary-neutral: #f3f2ff;
+  --color-sui-primary-content: #ffffff;
+  --color-sui-accent: #2d84eb; /* hedera cobalt */
+  --color-sui-base-content: #11151d; /* hedera charcoal */
 
   /* Status colors */
   --color-sui-success: #34eeb6;
@@ -29,12 +29,13 @@
 }
 
 @variant dark {
-  --color-sui-primary: #212638;
-  --color-sui-primary-subtle: #323f61;
-  --color-sui-primary-neutral: #2a3655;
-  --color-sui-primary-content: #f9fbff;
-  --color-sui-accent: #4969a6;
-  --color-sui-base-content: #f9fbff;
+  /* Hedera themed (dark) */
+  --color-sui-primary: #8259ef; /* hedera ultraviolet / dark primary */
+  --color-sui-primary-subtle: #4f46e5;
+  --color-sui-primary-neutral: #181c27;
+  --color-sui-primary-content: #ffffff;
+  --color-sui-accent: #2d84eb;
+  --color-sui-base-content: #f0f0f2;
 
   --color-sui-input-text: color-mix(in oklab, var(--color-sui-base-content) 70%, transparent);
   --color-sui-input-border-disabled: var(--color-sui-primary);
