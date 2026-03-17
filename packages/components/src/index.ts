@@ -8,6 +8,8 @@ export {
   type AddressInputProps,
   HederaAddressInput,
   type HederaAddressInputProps,
+  HbarInput,
+  type HbarInputProps,
   EtherInput,
   type EtherInputProps,
 } from "./Input";

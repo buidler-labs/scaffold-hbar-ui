@@ -1,28 +1,29 @@
+import type { Chain } from "viem";
 import { useFetchNativeCurrencyPrice } from "./useFetchNativeCurrencyPrice";
-import { mainnet } from "viem/chains";
+import { hederaTestnet, mainnet } from "viem/chains";
 
 export const MAX_DECIMALS_USD = 2;
 
 export const SIGNED_NUMBER_REGEX = /^-?\d*\.?\d*$/;
 
-function etherValueToUsd(etherValue: string, nativeCurrencyPrice: number) {
-  if (!etherValue || !nativeCurrencyPrice) {
+function nativeValueToUsd(nativeValue: string, nativeCurrencyPrice: number) {
+  if (!nativeValue || !nativeCurrencyPrice) {
     return "";
   }
 
-  if (!SIGNED_NUMBER_REGEX.test(etherValue)) {
-    throw new Error("Invalid ether value");
+  if (!SIGNED_NUMBER_REGEX.test(nativeValue)) {
+    throw new Error("Invalid value");
   }
 
-  const parsedEthValue = parseFloat(etherValue);
+  const parsed = parseFloat(nativeValue);
 
   return (
-    Math.round(parsedEthValue * nativeCurrencyPrice * 10 ** MAX_DECIMALS_USD) /
+    Math.round(parsed * nativeCurrencyPrice * 10 ** MAX_DECIMALS_USD) /
     10 ** MAX_DECIMALS_USD
   ).toString();
 }
 
-function usdValueToEth(usdValue: string, nativeCurrencyPrice: number) {
+function usdValueToNative(usdValue: string, nativeCurrencyPrice: number) {
   if (!usdValue || !nativeCurrencyPrice) {
     return "";
   }
@@ -36,25 +37,36 @@ function usdValueToEth(usdValue: string, nativeCurrencyPrice: number) {
   return (parsedUsdValue / nativeCurrencyPrice).toString();
 }
 
-/**
- * Hook for ETH/USD value conversion.
- * @param value - The value as entered by the user (in ETH or USD, depending on usdMode)
- * @param usdMode - true if value is USD, false if ETH
- */
-export const useEtherInput = ({ value, usdMode }: { value: string; usdMode: boolean }) => {
+export type UseHbarInputOptions = {
+  value: string;
+  usdMode: boolean;
+  /** Chain for native currency price and symbol. Defaults to hederaTestnet (HBAR). */
+  chain?: Chain;
+};
+
+/** Same as UseHbarInputOptions; chain defaults to mainnet when using useEtherInput. */
+export type UseEtherInputOptions = UseHbarInputOptions;
+
+function useNativeCurrencyInput(
+  value: string,
+  usdMode: boolean,
+  chain: Chain,
+) {
   const {
     price: nativeCurrencyPrice,
     isLoading: isNativeCurrencyPriceLoading,
     isError: isNativeCurrencyPriceError,
-  } = useFetchNativeCurrencyPrice(mainnet);
+  } = useFetchNativeCurrencyPrice(chain);
+
+  const nativeCurrencySymbol = chain.nativeCurrency?.symbol ?? "HBAR";
 
   let valueInEth = "";
   let valueInUsd = "";
   let error: string | null = null;
 
   try {
-    valueInEth = usdMode ? usdValueToEth(value, nativeCurrencyPrice || 0) : value;
-    valueInUsd = usdMode ? value : etherValueToUsd(value, nativeCurrencyPrice || 0);
+    valueInEth = usdMode ? usdValueToNative(value, nativeCurrencyPrice || 0) : value;
+    valueInUsd = usdMode ? value : nativeValueToUsd(value, nativeCurrencyPrice || 0);
   } catch (err: unknown) {
     error = (err as Error).message;
   }
@@ -67,5 +79,26 @@ export const useEtherInput = ({ value, usdMode }: { value: string; usdMode: bool
     nativeCurrencyPrice,
     isNativeCurrencyPriceLoading,
     isNativeCurrencyPriceError,
+    nativeCurrencySymbol,
   };
+}
+
+/**
+ * Hook for native token/USD conversion (Hedera-first: defaults to HBAR).
+ * When chain is Hedera (mainnet/testnet), uses HBAR price from CoinGecko; otherwise uses chain's native price (e.g. ETH).
+ *
+ * @param options.value - The value as entered by the user (in native token or USD, depending on usdMode)
+ * @param options.usdMode - true if value is USD, false if native token
+ * @param options.chain - Optional chain; defaults to hederaTestnet (HBAR).
+ */
+export const useHbarInput = ({ value, usdMode, chain = hederaTestnet }: UseHbarInputOptions) => {
+  return useNativeCurrencyInput(value, usdMode, chain);
+};
+
+/**
+ * Backward-compatible alias: same as useHbarInput but defaults chain to mainnet (ETH).
+ * Prefer useHbarInput for Hedera apps.
+ */
+export const useEtherInput = ({ value, usdMode, chain = mainnet }: UseEtherInputOptions) => {
+  return useNativeCurrencyInput(value, usdMode, chain);
 };

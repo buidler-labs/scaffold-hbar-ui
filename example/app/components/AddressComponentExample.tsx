@@ -2,8 +2,14 @@
 
 import React, { useState } from "react";
 import type { Address as AddressType } from "viem";
-import { hederaTestnet } from "viem/chains";
-import { Address, Balance, HederaAddress, HederaAddressInput } from "@scaffold-ui/components";
+import { hederaTestnet, mainnet } from "viem/chains";
+import {
+  Address,
+  Balance,
+  HederaAddress,
+  HederaAddressInput,
+  HbarInput,
+} from "@scaffold-ui/components";
 import { ExampleCard } from "./ExampleCard";
 
 export const AddressComponentExample: React.FC = () => {
@@ -51,6 +57,20 @@ export const AddressComponentExample: React.FC = () => {
               <HederaAddress address={resolvedAddress} chain={hederaTestnet} />
             </div>
           )}
+        </div>
+      </ExampleCard>
+
+      <ExampleCard title="HbarInput (HBAR by default)">
+        <div className="flex flex-col gap-4 w-full">
+          <span className="text-xs text-base-content/70">Native token + USD toggle (defaults to Hedera testnet / HBAR):</span>
+          <HbarInput placeholder="Amount in HBAR or USD" />
+        </div>
+      </ExampleCard>
+
+      <ExampleCard title="HbarInput with ETH (chain=mainnet)">
+        <div className="flex flex-col gap-4 w-full">
+          <span className="text-xs text-base-content/70">Same component with chain=mainnet for ETH:</span>
+          <HbarInput chain={mainnet} placeholder="Amount in ETH or USD" />
         </div>
       </ExampleCard>
     </div>

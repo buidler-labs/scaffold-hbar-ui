@@ -27,4 +27,11 @@ export {
 } from "./useHederaAddressInput";
 export { fetchHbarPrice, HBAR_PRICE_CACHE_DURATION_MS } from "./hbarPrice";
 export { isENS } from "./utils/ens";
-export { useEtherInput, MAX_DECIMALS_USD, SIGNED_NUMBER_REGEX } from "./useEtherInput";
+export {
+  useHbarInput,
+  useEtherInput,
+  MAX_DECIMALS_USD,
+  SIGNED_NUMBER_REGEX,
+  type UseHbarInputOptions,
+  type UseEtherInputOptions,
+} from "./useEtherInput";

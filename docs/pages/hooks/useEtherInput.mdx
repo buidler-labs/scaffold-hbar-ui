@@ -6,9 +6,9 @@ import React, { useState } from "react";
 import { useEtherInput } from "@scaffold-ui/hooks";
 import { DocsProvider } from "../../components/DocsProvider";
 
-# useEtherInput Hook
+# useEtherInput Hook (backward-compatible alias)
 
-The `useEtherInput` hook converts between ETH and USD for a given input and display mode. It returns both values, the current native currency price, and loading/error flags so you can build responsive inputs.
+The `useEtherInput` hook is a **backward-compatible alias** for [useHbarInput](/hooks/useHbarInput). It defaults `chain` to **mainnet (ETH)**. For Hedera-first apps, use **useHbarInput** (defaults to hederaTestnet / HBAR). Same parameters and return values; only the default chain differs.
 
 ## Import
 
