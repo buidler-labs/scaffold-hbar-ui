@@ -57,6 +57,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: "useMirrorNodeAccount", link: "/hooks/useMirrorNodeAccount" },
+            { text: "useNativeTransaction", link: "/hooks/useNativeTransaction" },
             { text: "useHbarInput", link: "/hooks/useHbarInput" },
           ],
         },

@@ -46,3 +46,13 @@ export {
   type UseHbarInputOptions,
   type UseEtherInputOptions,
 } from "./useEtherInput";
+export {
+  useNativeTransaction,
+  setNativeTransactionSigner,
+  getNativeTransactionSigner,
+  CapabilityError,
+  type NativeTransaction,
+  type NativeTransactionResponse,
+  type NativeTransactionSigner,
+  type UseNativeTransactionResult,
+} from "./useNativeTransaction";
