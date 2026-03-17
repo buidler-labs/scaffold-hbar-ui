@@ -10,7 +10,7 @@ const GITHUB_REPO = "https://github.com/buidler-labs/scaffold-ui";
 export default defineConfig({
   rootDir: ".",
   title: "Scaffold UI",
-  description: "React components and hooks for Ethereum dApps",
+  description: "React components and hooks for Hedera dApps",
   vite: {
     envDir: __dirname,
     envPrefix: "VITE_",
