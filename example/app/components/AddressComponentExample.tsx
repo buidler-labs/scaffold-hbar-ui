@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import type { Address as AddressType } from "viem";
-import { hederaTestnet, mainnet } from "viem/chains";
+import { hederaTestnet } from "viem/chains";
 import {
   Address,
   Balance,
@@ -10,6 +10,7 @@ import {
   HederaAddressInput,
   HbarInput,
 } from "@scaffold-ui/components";
+import { IntegerInput } from "@scaffold-ui/debug-contracts";
 import { getBlockExplorerAddressLink, useMirrorNodeAccount } from "@scaffold-ui/hooks";
 import { ExampleCard } from "./ExampleCard";
 
@@ -21,6 +22,7 @@ export const AddressComponentExample: React.FC = () => {
 
   const [inputValue, setInputValue] = useState("");
   const [resolvedAddress, setResolvedAddress] = useState<AddressType | undefined>(undefined);
+  const [integerValue, setIntegerValue] = useState("");
 
   return (
     <div className="flex flex-col gap-6 w-full items-center">
@@ -70,10 +72,14 @@ export const AddressComponentExample: React.FC = () => {
         </div>
       </ExampleCard>
 
-      <ExampleCard title="HbarInput with ETH (chain=mainnet)">
+      <ExampleCard title="IntegerInput with ×1e8 / ×1e18 multiplier">
         <div className="flex flex-col gap-4 w-full">
-          <span className="text-xs text-base-content/70">Same component with chain=mainnet for ETH:</span>
-          <HbarInput chain={mainnet} placeholder="Amount in ETH or USD" />
+          <span className="text-xs text-base-content/70">Enter an integer; use ×1e8 (tinybars) or ×1e18 (wei) to apply decimal multiplier:</span>
+          <IntegerInput
+            value={integerValue}
+            onChange={setIntegerValue}
+            placeholder="0"
+          />
         </div>
       </ExampleCard>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@scaffold-ui/components/styles.css";
+import "@scaffold-ui/debug-contracts/styles.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 import { ScaffoldEthAppWithProviders } from "./ScaffoldETHProvider";
