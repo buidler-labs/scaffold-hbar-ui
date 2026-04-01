@@ -1,6 +1,6 @@
 import { type Address as AddressType, type Chain, getAddress, isAddress } from "viem";
 import { blo } from "blo";
-import { hedera, hederaPreviewnet, hederaTestnet, mainnet } from "viem/chains";
+import { hedera, hederaTestnet, mainnet } from "viem/chains";
 
 type UseAddressOptions = {
   address?: AddressType;
@@ -14,7 +14,7 @@ function hashscanBaseUrlForChainId(chainId: number): string {
 }
 
 function isHederaChainId(chainId: number): boolean {
-  return chainId === hedera.id || chainId === hederaTestnet.id || chainId === hederaPreviewnet.id;
+  return chainId === hedera.id || chainId === hederaTestnet.id;
 }
 
 /** HashScan uses `/account/`; EVM explorers use `/address/`. Without explorer config, falls back to HashScan. */

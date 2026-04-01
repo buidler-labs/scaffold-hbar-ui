@@ -32,7 +32,7 @@ function hashscanBaseUrlForChainId(chainId: number): string {
 }
 
 function isHederaChainId(chainId: number): boolean {
-  return chainId === chains.hedera.id || chainId === chains.hederaTestnet.id || chainId === chains.hederaPreviewnet.id;
+  return chainId === chains.hedera.id || chainId === chains.hederaTestnet.id;
 }
 
 /**
