@@ -2,7 +2,7 @@ import { type Address as AddressType, type Chain, getAddress, isAddress } from "
 import { blo } from "blo";
 import * as viemChains from "viem/chains";
 
-const { hedera, hederaTestnet, mainnet } = viemChains;
+const { hedera, hederaTestnet } = viemChains;
 
 type UseAddressOptions = {
   address?: AddressType;
@@ -44,7 +44,7 @@ export function getBlockExplorerTxLink(chainId: number, txnHash: string): string
   return `${baseUrl}/tx/${txnHash}`;
 }
 
-// make the chain optional, if not provided, it will use from wagmi conig
+/** When `chain` is omitted, explorer links use Hedera testnet (HashScan testnet). Pass `hedera` or `hederaTestnet` explicitly for mainnet vs testnet. */
 export const useAddress = (UseAddressOptions: UseAddressOptions) => {
   const checkSumAddress =
     UseAddressOptions?.address &&
@@ -55,7 +55,7 @@ export const useAddress = (UseAddressOptions: UseAddressOptions) => {
   const shortAddress = checkSumAddress ? `${checkSumAddress.slice(0, 6)}...${checkSumAddress.slice(-4)}` : undefined;
 
   const blockExplorerAddressLink = checkSumAddress
-    ? getBlockExplorerAddressLink(UseAddressOptions?.chain ?? mainnet, checkSumAddress)
+    ? getBlockExplorerAddressLink(UseAddressOptions?.chain ?? hederaTestnet, checkSumAddress)
     : "";
 
   const blockieUrl = checkSumAddress ? blo(checkSumAddress) : undefined;
