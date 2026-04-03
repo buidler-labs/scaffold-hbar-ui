@@ -56,6 +56,8 @@ export default defineConfig({
           items: [
             { text: "useMirrorNodeAccount", link: "/hooks/useMirrorNodeAccount" },
             { text: "useNativeTransaction", link: "/hooks/useNativeTransaction" },
+            { text: "useCreateTopic", link: "/hooks/useCreateTopic" },
+            { text: "useCreateToken", link: "/hooks/useCreateToken" },
             { text: "useHbarInput", link: "/hooks/useHbarInput" },
             { text: "useHederaAddressInput", link: "/hooks/useHederaAddressInput" },
             { text: "useHederaAccountId", link: "/hooks/useHederaAccountId" },

@@ -1,0 +1,81 @@
+---
+layout: docs
+---
+
+# useCreateTopic Hook
+
+`useCreateTopic` submits a **Consensus Service (HCS) topic create** transaction via [`useNativeTransaction`](/hooks/useNativeTransaction). It builds a `TopicCreateTransaction` from `@hiero-ledger/sdk`, optionally sets a memo, and returns the wallet’s `transactionId`.
+
+The hook does **not** connect to a wallet itself. You must call [`setNativeTransactionSigner`](/hooks/useNativeTransaction) in your app, and usually pass **`ensureReady`** so the user is connected before `mutate`.
+
+## Peer dependency
+
+Requires **`@hiero-ledger/sdk`** (same major as your app).
+
+```bash
+pnpm add @hiero-ledger/sdk
+```
+
+## Import
+
+```tsx
+import { useCreateTopic, type CreateTopicParams, type UseCreateTopicOptions } from "@scaffold-ui/hooks";
+```
+
+## Usage
+
+```tsx
+import { useCreateTopic } from "@scaffold-ui/hooks";
+import { useHederaSigner } from "./useHederaSigner"; // your wallet hook
+
+function CreateTopicPanel() {
+  const { requireProvider } = useHederaSigner();
+  const createTopic = useCreateTopic({
+    ensureReady: () => {
+      requireProvider();
+    },
+  });
+
+  return (
+    <button
+      type="button"
+      disabled={createTopic.isPending}
+      onClick={() => createTopic.mutate({ memo: "My app topic" })}
+    >
+      {createTopic.isPending ? "Creating…" : "Create topic"}
+    </button>
+  );
+}
+```
+
+Omit **`ensureReady`** if you only rely on **`CapabilityError`** from `sendTransaction` when no signer is set.
+
+## Options
+
+| Option          | Type           | Description                                                                 |
+| --------------- | -------------- | --------------------------------------------------------------------------- |
+| `ensureReady?` | `() => void`   | Called at the start of each mutation; throw if the wallet/session is not ready. |
+
+## Mutation variables (`CreateTopicParams`)
+
+| Property | Type       | Description                          |
+| -------- | ---------- | ------------------------------------ |
+| `memo?`  | `string`   | Optional topic memo (trimmed).       |
+
+Call `mutate()` or `mutate({})` for a topic with no memo.
+
+## Return value
+
+Returns a **TanStack Query `useMutation`** result (`mutate`, `mutateAsync`, `isPending`, `isError`, `data`, `error`, etc.).
+
+On success, **`data`** is:
+
+| Property          | Type     | Description        |
+| ----------------- | -------- | ------------------ |
+| `transactionId`   | `string` | From the wallet response. |
+
+## Errors
+
+- **`CapabilityError`** — No native signer configured ([`useNativeTransaction`](/hooks/useNativeTransaction)).
+- **`Error("No transactionId returned from wallet")`** — Signer returned an empty response.
+- Any error thrown from **`ensureReady`** (e.g. “Connect a Hedera wallet first”).

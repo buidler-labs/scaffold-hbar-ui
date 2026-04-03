@@ -32,7 +32,7 @@ const { checkSumAddress, blockExplorerAddressLink, isValidAddress, shortAddress,
 | Parameter | Type                   | Default  | Description                                                                                         |
 | --------- | ---------------------- | -------- | --------------------------------------------------------------------------------------------------- |
 | `address` | `Address` _(optional)_ | -        | The EVM address to process.                                                                         |
-| `chain`   | `Chain` _(optional)_   | See note | Used for explorer links when `address` is omitted from the hook options; prefer passing explicitly. |
+| `chain`   | `Chain` _(optional)_   | `hederaTestnet` | Used for explorer links. Defaults to **`hederaTestnet`** when omitted; pass `hedera` from `viem/chains` for mainnet. |
 
 ## Return Values
 
