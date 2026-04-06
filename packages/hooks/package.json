@@ -12,7 +12,7 @@
     "dapp",
     "scaffold"
   ],
-  "homepage": "https://github.com/buidler-labs/scaffold-hbar-ui/packages/hooks#readme",
+  "homepage": "https://github.com/buidler-labs/scaffold-hbar-ui#readme",
   "type": "module",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
