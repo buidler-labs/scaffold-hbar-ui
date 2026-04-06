@@ -31,6 +31,7 @@ export default defineConfig({
             { text: "HederaAddress", link: "/components/HederaAddress" },
             { text: "HederaAddressInput", link: "/components/HederaAddressInput" },
             { text: "HbarInput", link: "/components/HbarInput" },
+            { text: "HederaPortalFaucet", link: "/components/HederaPortalFaucet" },
           ],
         },
         {
