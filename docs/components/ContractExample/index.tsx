@@ -1,6 +1,6 @@
 import React from "react";
 import { hederaTestnet } from "viem/chains";
-import { Contract } from "@scaffold-ui/debug-contracts";
+import { Contract } from "@scaffold-hbar-ui/debug-contracts";
 import { deployedContracts } from "./deployedContracts";
 import "./mobile.css";
 

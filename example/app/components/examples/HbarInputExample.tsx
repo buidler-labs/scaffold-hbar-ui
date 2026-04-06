@@ -1,6 +1,6 @@
 "use client";
 
-import { HbarInput } from "@scaffold-ui/components";
+import { HbarInput } from "@scaffold-hbar-ui/components";
 import { ExampleCard } from "../ExampleCard";
 
 export function HbarInputExample() {

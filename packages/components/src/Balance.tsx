@@ -2,7 +2,7 @@
 
 import React, { CSSProperties } from "react";
 import { Address, Chain } from "viem";
-import { useBalance } from "@scaffold-ui/hooks";
+import { useBalance } from "@scaffold-hbar-ui/hooks";
 import { useConfig } from "wagmi";
 import { mainnet } from "viem/chains";
 import { DefaultStylesWrapper } from "./utils/ComponentWrapper";

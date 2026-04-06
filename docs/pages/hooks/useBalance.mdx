@@ -3,7 +3,7 @@ layout: docs
 ---
 
 import React, { useState } from "react";
-import { useBalance } from "@scaffold-ui/hooks";
+import { useBalance } from "@scaffold-hbar-ui/hooks";
 import { DocsProvider } from "../../components/DocsProvider";
 import { hederaTestnet } from "viem/chains";
 
@@ -14,7 +14,7 @@ The `useBalance` hook fetches and watches an address balance on a given chain, p
 ## Import
 
 ```tsx
-import { useBalance } from "@scaffold-ui/hooks";
+import { useBalance } from "@scaffold-hbar-ui/hooks";
 ```
 
 ## Usage
@@ -107,7 +107,7 @@ return (
 
 ```tsx
 import React from "react";
-import { useBalance } from "@scaffold-ui/hooks";
+import { useBalance } from "@scaffold-hbar-ui/hooks";
 import { hederaTestnet } from "viem/chains";
 
 function BalanceWithToggle() {
@@ -200,7 +200,7 @@ return (
 
 ```tsx
 import React, { useState } from "react";
-import { useBalance } from "@scaffold-ui/hooks";
+import { useBalance } from "@scaffold-hbar-ui/hooks";
 import { hederaTestnet } from "viem/chains";
 
 function BalanceWithLoadingStates() {

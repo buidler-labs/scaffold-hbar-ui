@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CommonInputProps, IntegerVariant, isValidInteger } from "../../utils/inputs";
-import { BaseInput } from "@scaffold-ui/components";
+import { BaseInput } from "@scaffold-hbar-ui/components";
 import { DecimalMultiplierButtons } from "./DecimalMultiplierButtons";
 
 type IntegerInputProps = CommonInputProps<string> & {

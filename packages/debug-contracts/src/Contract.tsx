@@ -1,4 +1,4 @@
-import { Address, Balance } from "@scaffold-ui/components";
+import { Address, Balance } from "@scaffold-hbar-ui/components";
 import { useMemo, useReducer } from "react";
 import { Abi, extractChain, type Address as AddressType } from "viem";
 import { ContractVariables } from "./components/ContractVariables";

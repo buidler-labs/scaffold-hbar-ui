@@ -5,8 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { hedera, hederaTestnet } from "viem/chains";
 import { createConfig, http } from "wagmi";
-import "@scaffold-ui/components/styles.css";
-import "@scaffold-ui/debug-contracts/styles.css";
+import "@scaffold-hbar-ui/components/styles.css";
+import "@scaffold-hbar-ui/debug-contracts/styles.css";
 
 /** Hedera-only docs: `hedera` first so `Address` without `chain` defaults to Hedera mainnet. */
 export const chains = [hedera, hederaTestnet] as const;

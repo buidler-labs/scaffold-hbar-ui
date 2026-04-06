@@ -3,7 +3,7 @@ layout: docs
 ---
 
 import React, { useMemo } from "react";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 import { DocsProvider } from "../../components/DocsProvider";
 
 # Address Component
@@ -13,7 +13,7 @@ The `Address` component displays EVM-format addresses with a blockie, copy contr
 ## Import
 
 ```tsx
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 ```
 
 ## Props
@@ -38,7 +38,7 @@ import { Address } from "@scaffold-ui/components";
 
 ```tsx twoslash
 import React from "react";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 
 <Address address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045" />;
 ```
@@ -58,7 +58,7 @@ import { Address } from "@scaffold-ui/components";
 
 ```tsx twoslash
 import React from "react";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 
 <Address
   address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
@@ -82,7 +82,7 @@ import { Address } from "@scaffold-ui/components";
 
 ```tsx twoslash
 import React from "react";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 
 <Address
   address="0x1234567890123456789012345678901234567890"
@@ -101,7 +101,7 @@ import { Address } from "@scaffold-ui/components";
 
 ```tsx twoslash
 import React from "react";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 
 <Address
   address="0x1234567890123456789012345678901234567890"
@@ -120,7 +120,7 @@ import { Address } from "@scaffold-ui/components";
 
 ```tsx twoslash
 import React from "react";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 
 <Address
   address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
@@ -142,7 +142,7 @@ import { hederaTestnet } from "viem/chains";
 ```tsx twoslash
 import React from "react";
 import { hederaTestnet } from "viem/chains";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 
 <Address
   address="0x1234567890123456789012345678901234567890"
@@ -160,7 +160,7 @@ When an invalid Ethereum address is provided, the component displays an error me
 
 ```tsx twoslash
 import React from "react";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 
 // Invalid address - shows error message
 <Address address="0xInvalidAddress123" />;

@@ -2,7 +2,7 @@ import { Abi, AbiFunction, AbiParameter } from "abitype";
 import { getAddress } from "viem";
 import { Config } from "wagmi";
 import { simulateContract } from "wagmi/actions";
-import { chainIdToHederaNetwork, getEvmAddressFromHederaAccountId, HEDERA_CHAIN_IDS } from "@scaffold-ui/hooks";
+import { chainIdToHederaNetwork, getEvmAddressFromHederaAccountId, HEDERA_CHAIN_IDS } from "@scaffold-hbar-ui/hooks";
 import { WriteContractVariables } from "wagmi/query";
 import { getParsedError } from "./getParsedError";
 import { notification } from "./notification";

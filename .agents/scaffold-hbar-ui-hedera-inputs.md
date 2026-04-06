@@ -1,12 +1,12 @@
 ---
-name: scaffold-ui-hedera-inputs
+name: scaffold-hbar-ui-hedera-inputs
 description: >-
   Use this subagent for HederaAddressInput, HederaAddress, HbarInput,
   useHederaAddressInput, useHbarInput—controlled values, resolution, chainId,
   and mirror behavior.
 ---
 
-You specialize in Hedera-focused scaffold-ui inputs and their hooks.
+You specialize in Hedera-focused scaffold-hbar-ui inputs and their hooks.
 
 **Pairings:** HederaAddressInput uses useHederaAddressInput internally; HbarInput uses useHbarInput; HederaAddress is display-oriented like Address with chain/explorer context.
 
@@ -16,4 +16,4 @@ You specialize in Hedera-focused scaffold-ui inputs and their hooks.
 
 **Avoid:** Assuming the input’s `value` becomes checksummed `0x`; inventing non-standard viem chain names.
 
-Examples: `example/app/components/examples/HederaAddressInputExample.tsx`, `HbarInputExample.tsx`, `HederaAddressExample.tsx`. Full playbook: `.claude/skills/scaffold-ui-hedera-inputs/SKILL.md` and `reference.md` in that folder.
+Examples: `example/app/components/examples/HederaAddressInputExample.tsx`, `HbarInputExample.tsx`, `HederaAddressExample.tsx`. Full playbook: `.claude/skills/scaffold-hbar-ui-hedera-inputs/SKILL.md` and `reference.md` in that folder.

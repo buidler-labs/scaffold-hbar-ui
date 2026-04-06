@@ -1,7 +1,7 @@
 "use client";
 
 import { hederaTestnet } from "viem/chains";
-import { Balance } from "@scaffold-ui/components";
+import { Balance } from "@scaffold-hbar-ui/components";
 import { ExampleCard } from "../ExampleCard";
 import { DEMO_EVM_ADDRESS } from "./demoConstants";
 

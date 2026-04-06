@@ -13,7 +13,7 @@ import {
   useHederaAddressInput,
   type UseHederaAddressInputOptions,
   type UseHederaAddressInputResult,
-} from "@scaffold-ui/hooks";
+} from "@scaffold-hbar-ui/hooks";
 ```
 
 ## Usage
@@ -69,7 +69,7 @@ const {
 
 ```tsx
 import React, { useState } from "react";
-import { useHederaAddressInput } from "@scaffold-ui/hooks";
+import { useHederaAddressInput } from "@scaffold-hbar-ui/hooks";
 
 function CustomHederaField() {
   const [value, setValue] = useState("");
@@ -98,4 +98,4 @@ function CustomHederaField() {
 ## Related
 
 - **[HederaAddressInput](/components/HederaAddressInput)** — Styled input built on this hook.
-- **Resolver setup:** The library uses configurable resolvers (default: same-origin API routes). Configure with `setHederaAccountIdResolver` / `setHederaEvmAddressResolver` or `setHederaAccountIdApiBase` / `setHederaEvmAddressApiBase` from `@scaffold-ui/hooks`. See the [HederaAddressInput](/components/HederaAddressInput) page for the expected endpoint shapes.
+- **Resolver setup:** The library uses configurable resolvers (default: same-origin API routes). Configure with `setHederaAccountIdResolver` / `setHederaEvmAddressResolver` or `setHederaAccountIdApiBase` / `setHederaEvmAddressApiBase` from `@scaffold-hbar-ui/hooks`. See the [HederaAddressInput](/components/HederaAddressInput) page for the expected endpoint shapes.

@@ -3,7 +3,7 @@ layout: docs
 ---
 
 import React from "react";
-import { HederaAddress } from "@scaffold-ui/components";
+import { HederaAddress } from "@scaffold-hbar-ui/components";
 import { hederaTestnet } from "viem/chains";
 import { DocsProvider } from "../../components/DocsProvider";
 
@@ -15,15 +15,15 @@ The `HederaAddress` component displays a Hedera address with automatic **bidirec
 
 - **With EVM address (`0x…`):** Resolves to Hedera account ID via the host's `/api/hedera?evm=...` (or custom resolver). Shows account ID as primary, optional "EVM: 0x..." as secondary. While resolving, shows "Resolving Hedera Account ID…".
 - **With native account ID (`0.0.n`):** Resolves to EVM address via `/api/hedera?accountId=...` (or custom resolver). Shows account ID as primary, resolved EVM as secondary. While resolving, shows "Resolving EVM address…".
-- **Explorer link:** Uses Hedera-aware URLs (e.g. HashScan `/account/` for Hedera chains) via `getBlockExplorerAddressLink` from `@scaffold-ui/hooks`. Pass **`blockExplorerAddressLink`** to override the URL used for the primary line's link.
+- **Explorer link:** Uses Hedera-aware URLs (e.g. HashScan `/account/` for Hedera chains) via `getBlockExplorerAddressLink` from `@scaffold-hbar-ui/hooks`. Pass **`blockExplorerAddressLink`** to override the URL used for the primary line's link.
 - **Invalid value:** If `value` is non-empty but matches neither a valid EVM address nor a valid `0.0.n` pattern, the component shows an error row.
 
-The host app must provide `GET /api/hedera` (or set the appropriate resolvers from `@scaffold-ui/hooks`) for bidirectional resolution.
+The host app must provide `GET /api/hedera` (or set the appropriate resolvers from `@scaffold-hbar-ui/hooks`) for bidirectional resolution.
 
 ## Import
 
 ```tsx
-import { HederaAddress } from "@scaffold-ui/components";
+import { HederaAddress } from "@scaffold-hbar-ui/components";
 ```
 
 ## Props
@@ -52,7 +52,7 @@ import { HederaAddress } from "@scaffold-ui/components";
 </DocsProvider>
 
 ```tsx
-import { HederaAddress } from "@scaffold-ui/components";
+import { HederaAddress } from "@scaffold-hbar-ui/components";
 import { hederaTestnet } from "viem/chains";
 
 <HederaAddress
@@ -147,4 +147,4 @@ When `value` is not provided, the component shows a loading skeleton.
 
 - **[Address](/components/Address)** – Display Ethereum addresses (ENS, blockie, copy).
 - **[HederaAddressInput](/components/HederaAddressInput)** – Input for Hedera (EVM or native account ID) with resolution.
-- **Hooks:** Resolution uses `useHederaAccountId` (EVM → account ID) and `useHederaEvmAddress` (account ID → EVM) from `@scaffold-ui/hooks`. Override with `setHederaAccountIdResolver` / `setHederaEvmAddressResolver` or their API base setters.
+- **Hooks:** Resolution uses `useHederaAccountId` (EVM → account ID) and `useHederaEvmAddress` (account ID → EVM) from `@scaffold-hbar-ui/hooks`. Override with `setHederaAccountIdResolver` / `setHederaEvmAddressResolver` or their API base setters.

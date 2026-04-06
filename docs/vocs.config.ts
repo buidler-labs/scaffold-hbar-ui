@@ -5,11 +5,11 @@ import { dirname, resolve } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** Project repo (used for GitHub and Examples links in nav). */
-const GITHUB_REPO = "https://github.com/buidler-labs/scaffold-ui";
+const GITHUB_REPO = "https://github.com/buidler-labs/scaffold-hbar-ui";
 
 export default defineConfig({
   rootDir: ".",
-  title: "Scaffold UI",
+  title: "Scaffold Hbar UI",
   description: "React components and hooks for Hedera dApps",
   vite: {
     envDir: __dirname,

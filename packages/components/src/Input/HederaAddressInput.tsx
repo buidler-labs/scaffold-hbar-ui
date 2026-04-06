@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { Address } from "viem";
-import { useHederaAddressInput } from "@scaffold-ui/hooks";
+import { useHederaAddressInput } from "@scaffold-hbar-ui/hooks";
 import { AddressCopyIcon } from "../Address/AddressCopyIcon";
 import { BaseInput, type BaseInputFieldTone } from "./BaseInput";
 import { CommonInputProps } from "./utils";

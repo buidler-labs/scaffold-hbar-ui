@@ -1,4 +1,4 @@
-# @scaffold-ui/components
+# @scaffold-hbar-ui/components
 
 ## 0.1.8
 
@@ -6,7 +6,7 @@
 
 - 5b6f98e: up react and next
 - Updated dependencies [5b6f98e]
-  - @scaffold-ui/hooks@0.1.6
+  - @scaffold-hbar-ui/hooks@0.1.6
 
 ## 0.1.7
 
@@ -25,21 +25,21 @@
 - Updated dependencies [d9590fe]
 - Updated dependencies [5a3a506]
 - Updated dependencies [6582fcd]
-  - @scaffold-ui/hooks@0.1.5
+  - @scaffold-hbar-ui/hooks@0.1.5
 
 ## 0.1.5
 
 ### Patch Changes
 
 - Updated dependencies [5e23fdf]
-  - @scaffold-ui/hooks@0.1.4
+  - @scaffold-hbar-ui/hooks@0.1.4
 
 ## 0.1.4
 
 ### Patch Changes
 
 - Updated dependencies [c805b7e]
-  - @scaffold-ui/hooks@0.1.3
+  - @scaffold-hbar-ui/hooks@0.1.3
 
 ## 0.1.3
 
@@ -64,7 +64,7 @@
   fix base input component colors
 - Updated dependencies [b884a95]
 - Updated dependencies [b884a95]
-  - @scaffold-ui/hooks@0.1.2
+  - @scaffold-hbar-ui/hooks@0.1.2
 
 ## 0.1.2-rc.5
 
@@ -83,7 +83,7 @@
 - 5e5778b: ui polish to debug component
 - 5e5778b: Address component blockexplorer link and "use client" for all components
 - Updated dependencies [5e5778b]
-  - @scaffold-ui/hooks@0.1.2-rc.1
+  - @scaffold-hbar-ui/hooks@0.1.2-rc.1
 
 ## 0.1.2-rc.3
 
@@ -109,7 +109,7 @@
 
 - 4baa885: feat: have common BaseInput for Input components
 - Updated dependencies [6674b6e]
-  - @scaffold-ui/hooks@0.1.2-rc.0
+  - @scaffold-hbar-ui/hooks@0.1.2-rc.0
 
 ## 0.1.1
 
@@ -117,4 +117,4 @@
 
 - 8f807af: add initial component and hooks
 - Updated dependencies [8f807af]
-  - @scaffold-ui/hooks@0.1.1
+  - @scaffold-hbar-ui/hooks@0.1.1

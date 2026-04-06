@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Chain } from "viem";
 import { hederaTestnet } from "viem/chains";
-import { MAX_DECIMALS_USD, useHbarInput, SIGNED_NUMBER_REGEX } from "@scaffold-ui/hooks";
+import { MAX_DECIMALS_USD, useHbarInput, SIGNED_NUMBER_REGEX } from "@scaffold-hbar-ui/hooks";
 import { SwitchIcon } from "../icons/SwitchIcon";
 import { BaseInput } from "./BaseInput";
 import { CommonInputProps } from "./utils";

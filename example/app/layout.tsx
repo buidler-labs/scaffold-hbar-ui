@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "@scaffold-ui/components/styles.css";
-import "@scaffold-ui/debug-contracts/styles.css";
+import "@scaffold-hbar-ui/components/styles.css";
+import "@scaffold-hbar-ui/debug-contracts/styles.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 import { ScaffoldHbarAppWithProviders } from "./ScaffoldHbarProvider";
@@ -8,7 +8,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Scaffold Hedera UI",
-  description: "Hedera-styled Web3 UI components using @scaffold-ui",
+  description: "Hedera-styled Web3 UI components using @scaffold-hbar-ui",
 };
 
 export default function RootLayout({

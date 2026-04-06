@@ -1,7 +1,7 @@
 "use client";
 
 import React, { CSSProperties, useMemo } from "react";
-import { useAddress } from "@scaffold-ui/hooks";
+import { useAddress } from "@scaffold-hbar-ui/hooks";
 import { Chain, type Address as AddressType } from "viem";
 import { mainnet } from "viem/chains";
 import { AddressLinkWrapper } from "./AddressLinkWrapper";

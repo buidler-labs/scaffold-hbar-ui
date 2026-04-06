@@ -1,5 +1,5 @@
 ---
-name: scaffold-ui-example-app
+name: scaffold-hbar-ui-example-app
 description: >-
   Describes the Next.js example app under example/—ScaffoldHbarAppWithProviders,
   wagmiConfig chains (hedera, hederaTestnet), layout CSS imports, and where
@@ -8,7 +8,7 @@ description: >-
   ScaffoldHbarProvider.
 ---
 
-# Example app (scaffold-ui)
+# Example app (scaffold-hbar-ui)
 
 ## Run
 
@@ -17,7 +17,7 @@ From repo root: `pnpm dev` — starts hooks/components watch and the example app
 ## Provider stack
 
 - [example/app/ScaffoldHbarProvider.tsx](example/app/ScaffoldHbarProvider.tsx) exports **`ScaffoldHbarAppWithProviders`**: `WagmiProvider` → `QueryClientProvider` → `RainbowKitProvider` (`initialChain={hederaTestnet}`) → shell with `Header` / `SwitchTheme`.
-- [example/app/layout.tsx](example/app/layout.tsx): wraps children with `ThemeProvider` and `ScaffoldHbarAppWithProviders`; imports `@scaffold-ui/components/styles.css`, `@scaffold-ui/debug-contracts/styles.css`, RainbowKit, and `globals.css`.
+- [example/app/layout.tsx](example/app/layout.tsx): wraps children with `ThemeProvider` and `ScaffoldHbarAppWithProviders`; imports `@scaffold-hbar-ui/components/styles.css`, `@scaffold-hbar-ui/debug-contracts/styles.css`, RainbowKit, and `globals.css`.
 
 ## Wagmi / viem config
 
@@ -33,4 +33,4 @@ From repo root: `pnpm dev` — starts hooks/components watch and the example app
 1. Create `example/app/components/examples/YourExample.tsx` using `ExampleCard` like existing files.
 2. Export from `examples/index.ts` and render from `HomeContent.tsx`.
 
-For a **new exported component or hook** (not just a new card), also implement in `packages/*`, document in `docs/` (MDX + `vocs.config.ts` sidebar). See root `README.md` section *Adding a new component or hook* or skill `scaffold-ui-components`.
+For a **new exported component or hook** (not just a new card), also implement in `packages/*`, document in `docs/` (MDX + `vocs.config.ts` sidebar). See root `README.md` section *Adding a new component or hook* or skill `scaffold-hbar-ui-components`.

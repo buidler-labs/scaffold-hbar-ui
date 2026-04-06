@@ -1,6 +1,6 @@
 "use client";
 
-import { useMirrorNodeAccount } from "@scaffold-ui/hooks";
+import { useMirrorNodeAccount } from "@scaffold-hbar-ui/hooks";
 import { ExampleCard } from "../ExampleCard";
 import { MIRROR_NODE_DEMO_ACCOUNT_ID } from "./demoConstants";
 

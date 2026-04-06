@@ -1,30 +1,30 @@
 ---
-name: scaffold-ui-components
+name: scaffold-hbar-ui-components
 description: >-
-  Guides use of the scaffold-ui monorepo packages @scaffold-ui/components,
-  @scaffold-ui/hooks, and @scaffold-ui/debug-contracts—imports, peer deps, CSS,
+  Guides use of the scaffold-hbar-ui monorepo packages @scaffold-hbar-ui/components,
+  @scaffold-hbar-ui/hooks, and @scaffold-hbar-ui/debug-contracts—imports, peer deps, CSS,
   public exports, and the checklist for adding a new component or hook. Use when
-  adding or changing UI in scaffold-ui, consuming these packages from
+  adding or changing UI in scaffold-hbar-ui, consuming these packages from
   scaffold-hbar, or when the user mentions Address, Balance, HederaAddress,
   BaseInput, IntegerInput, debug contracts UI, new hook, or documentation vocs.
 ---
 
-# scaffold-ui packages
+# scaffold-hbar-ui packages
 
 ## Which package
 
 | Package | Use for |
 |---------|---------|
-| `@scaffold-ui/components` | `Address`, `Balance`, `HederaAddress`, `BaseInput`, `HederaAddressInput`, `HbarInput` |
-| `@scaffold-ui/hooks` | Wagmi/viem helpers, Hedera resolution, balances, HBAR price, `useHbarInput` state (used internally by `HbarInput`) |
-| `@scaffold-ui/debug-contracts` | Contract debug UI, `IntegerInput` and byte inputs for ABI forms |
+| `@scaffold-hbar-ui/components` | `Address`, `Balance`, `HederaAddress`, `BaseInput`, `HederaAddressInput`, `HbarInput` |
+| `@scaffold-hbar-ui/hooks` | Wagmi/viem helpers, Hedera resolution, balances, HBAR price, `useHbarInput` state (used internally by `HbarInput`) |
+| `@scaffold-hbar-ui/debug-contracts` | Contract debug UI, `IntegerInput` and byte inputs for ABI forms |
 
-Components **require** `@scaffold-ui/hooks` as a peer dependency. Install both when consuming from an app.
+Components **require** `@scaffold-hbar-ui/hooks` as a peer dependency. Install both when consuming from an app.
 
 ## Imports and styles
 
-- Default entry: `import { … } from "@scaffold-ui/components"` (see `packages/components/src/index.ts` for the exact export list).
-- Styles: import `@scaffold-ui/components/styles.css` once at app root (e.g. Next.js `layout.tsx`). For debug UI, also import `@scaffold-ui/debug-contracts/styles.css`.
+- Default entry: `import { … } from "@scaffold-hbar-ui/components"` (see `packages/components/src/index.ts` for the exact export list).
+- Styles: import `@scaffold-hbar-ui/components/styles.css` once at app root (e.g. Next.js `layout.tsx`). For debug UI, also import `@scaffold-hbar-ui/debug-contracts/styles.css`.
 - Viem chains: use `hedera` and `hederaTestnet` from `viem/chains` (not legacy names like `hederaMainnet`).
 
 ## Theme (colors + Hedera typography)

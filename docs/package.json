@@ -1,25 +1,25 @@
 {
   "name": "docs",
   "version": "1.0.0",
-  "description": "Documentation for scaffold-ui components",
+  "description": "Documentation for scaffold-hbar-ui components",
   "type": "module",
   "scripts": {
     "dev": "vocs dev",
-    "build": "pnpm --filter @scaffold-ui/hooks --filter @scaffold-ui/components --filter @scaffold-ui/debug-contracts run build && vocs build",
+    "build": "pnpm --filter @scaffold-hbar-ui/hooks --filter @scaffold-hbar-ui/components --filter @scaffold-hbar-ui/debug-contracts run build && vocs build",
     "preview": "vocs preview",
     "format": "prettier --write ."
   },
   "keywords": [
     "documentation",
-    "scaffold-ui",
+    "scaffold-hbar-ui",
     "components"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@scaffold-ui/components": "workspace:*",
-    "@scaffold-ui/debug-contracts": "workspace:*",
-    "@scaffold-ui/hooks": "workspace:*",
+    "@scaffold-hbar-ui/components": "workspace:*",
+    "@scaffold-hbar-ui/debug-contracts": "workspace:*",
+    "@scaffold-hbar-ui/hooks": "workspace:*",
     "@tanstack/react-query": "^5.59.15",
     "@types/react": "^19",
     "@types/react-dom": "^19",

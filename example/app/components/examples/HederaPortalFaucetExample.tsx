@@ -1,6 +1,6 @@
 "use client";
 
-import { HederaPortalFaucet } from "@scaffold-ui/components";
+import { HederaPortalFaucet } from "@scaffold-hbar-ui/components";
 import { ExampleCard } from "../ExampleCard";
 import { DEMO_EVM_ADDRESS } from "./demoConstants";
 
