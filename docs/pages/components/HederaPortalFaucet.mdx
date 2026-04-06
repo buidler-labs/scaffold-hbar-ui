@@ -1,0 +1,136 @@
+---
+layout: docs
+---
+
+import { HederaPortalFaucet } from "@scaffold-ui/components";
+import { DocsProvider } from "../../components/DocsProvider";
+
+# HederaPortalFaucet
+
+Link to the [Hedera Portal testnet faucet](https://portal.hedera.com/faucet):
+
+- Opens in a **new tab** (`target="_blank"`).
+- **Pre-fill:** omit `address` to use the connected wagmi account (`useAccount()`); pass `address` to fix a specific EVM address in the query string.
+- **Styling:** DaisyUI — `btn btn-primary btn-sm` or `link link-primary` via `variant`.
+- **`hederaPortalFaucetUrl`:** same URL logic as a standalone helper (custom button, menu item, etc.).
+- **Client-only** (`"use client"`): wrap with **`WagmiProvider`** when you rely on the connected wallet for pre-fill.
+
+## Import
+
+```tsx
+import { HederaPortalFaucet, hederaPortalFaucetUrl } from "@scaffold-ui/components";
+```
+
+## Props
+
+| Prop        | Type                   | Default              | Description                                                                         |
+| ----------- | ---------------------- | -------------------- | ----------------------------------------------------------------------------------- |
+| `address`   | `string \| null`       | -                    | EVM address for the faucet query string. If omitted, uses `useAccount().address`.   |
+| `className` | `string`               | -                    | Extra classes merged onto the `<a>` (e.g. `w-fit` so the control does not stretch). |
+| `children`  | `ReactNode`            | -                    | If set, replaces the default label + optional icon.                                 |
+| `label`     | `string`               | `"Get testnet HBAR"` | Text when `children` are not provided.                                              |
+| `showIcon`  | `boolean`              | `true`               | When `true`, shows a banknotes icon before the label (ignored if `children` set).   |
+| `variant`   | `"button"` \| `"link"` | `"button"`           | DaisyUI primary small button vs inline link style.                                  |
+
+## `hederaPortalFaucetUrl`
+
+```ts
+function hederaPortalFaucetUrl(evmAddress?: string | null): string;
+```
+
+Returns `https://portal.hedera.com/faucet` with an `address` search param when `evmAddress` is provided.
+
+```tsx
+import { hederaPortalFaucetUrl } from "@scaffold-ui/components";
+
+const url = hederaPortalFaucetUrl("0xd8da6bf26964af9d7eed9e03e53415d37aa96045");
+// https://portal.hedera.com/faucet?address=0xd8da6bf26964af9d7eed9e03e53415d37aa96045
+```
+
+## Live examples
+
+Examples use `className="w-fit"` so the control stays content-sized inside the docs layout.
+
+### Default (uses connected wallet when available)
+
+<DocsProvider>
+  <div className="not-prose flex flex-col gap-3 items-start">
+    <HederaPortalFaucet className="w-fit" />
+  </div>
+</DocsProvider>
+
+```tsx
+<HederaPortalFaucet className="w-fit" />
+```
+
+### Explicit address and label
+
+<DocsProvider>
+  <div className="not-prose flex flex-col gap-3 items-start">
+    <HederaPortalFaucet
+      className="w-fit"
+      address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+      label="Open faucet for this address"
+    />
+  </div>
+</DocsProvider>
+
+```tsx
+<HederaPortalFaucet
+  className="w-fit"
+  address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+  label="Open faucet for this address"
+/>
+```
+
+### Link variant
+
+<DocsProvider>
+  <div className="not-prose flex flex-col gap-3 items-start">
+    <HederaPortalFaucet
+      className="w-fit"
+      address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+      variant="link"
+      label="Testnet HBAR (link)"
+    />
+  </div>
+</DocsProvider>
+
+```tsx
+<HederaPortalFaucet
+  className="w-fit"
+  address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+  variant="link"
+  label="Testnet HBAR (link)"
+/>
+```
+
+### Custom children
+
+<DocsProvider>
+  <div className="not-prose flex flex-col gap-3 items-start">
+    <HederaPortalFaucet
+      className="w-fit"
+      address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+      showIcon={false}
+    >
+      <span className="underline">Custom CTA</span>
+    </HederaPortalFaucet>
+  </div>
+</DocsProvider>
+
+```tsx
+<HederaPortalFaucet
+  className="w-fit"
+  address="0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+  showIcon={false}
+>
+  <span className="underline">Custom CTA</span>
+</HederaPortalFaucet>
+```
+
+## See also
+
+- **[Balance](/components/Balance)** — Show HBAR balance for an address on a Hedera chain.
+- **[Address](/components/Address)** — Display an EVM address with explorer link.
+- **Example app:** [example/app/components/examples/HederaPortalFaucetExample.tsx](https://github.com/buidler-labs/scaffold-ui/tree/main/example/app/components/examples/HederaPortalFaucetExample.tsx) (full showcase).
