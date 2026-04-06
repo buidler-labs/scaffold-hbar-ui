@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { IntegerInput, IntegerVariant } from "@scaffold-ui/debug-contracts";
+import { IntegerInput, IntegerVariant } from "@scaffold-hbar-ui/debug-contracts";
 
 interface IntegerInputExampleProps {
   initialValue?: string;

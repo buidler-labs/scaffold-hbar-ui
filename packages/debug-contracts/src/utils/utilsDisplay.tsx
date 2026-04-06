@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import { TransactionBase, TransactionReceipt, formatEther, formatUnits, isAddress, isHex } from "viem";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 import { Tooltip } from "../components/Tooltip";
 import { useContractConfig } from "../contexts/ContractConfigContext";
 

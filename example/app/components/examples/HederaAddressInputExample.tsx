@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { hederaTestnet } from "viem/chains";
-import { HederaAddressInput } from "@scaffold-ui/components";
+import { HederaAddressInput } from "@scaffold-hbar-ui/components";
 import { ExampleCard } from "../ExampleCard";
 
 export function HederaAddressInputExample() {

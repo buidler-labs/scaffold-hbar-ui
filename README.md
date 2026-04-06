@@ -1,4 +1,4 @@
-# Scaffold UI
+# Scaffold Hbar UI
 
 Shared React components and hooks for **Hedera** and EVM-compatible dApps. This repo is intended for use with **scaffold-hbar** (Scaffold Hbar). See package READMEs for API details:
 
@@ -38,7 +38,7 @@ This will start the dev mode of both the hooks and components packages, along wi
 
 ### Quick Setup
 
-1. Start the dev mode for both packages in the scaffold-ui directory:
+1. Start the dev mode for both packages in the scaffold-hbar-ui directory:
 
 ```bash
 # For hooks
@@ -51,8 +51,8 @@ cd packages/components && pnpm run dev &
 2. Add both packages in **scaffold-hbar** inside the `packages/nextjs/package.json` file:
 
 ```json
-"@scaffold-ui/hooks": "file:../../../scaffold-ui/packages/hooks",
-"@scaffold-ui/components": "file:../../../scaffold-ui/packages/components"
+"@scaffold-hbar-ui/hooks": "file:../../../scaffold-hbar-ui/packages/hooks",
+"@scaffold-hbar-ui/components": "file:../../../scaffold-hbar-ui/packages/components"
 ```
 
 **Note:** The relative paths use `../../../` because they are resolved from the `packages/nextjs` directory in scaffold-hbar’s workspace structure.
@@ -77,7 +77,7 @@ webpack: (config, { dev }) => {
 4. Add the css file in `packages/nextjs/app/layout.tsx` file for the components package:
 
 ```tsx
-import "@scaffold-ui/components/styles.css";
+import "@scaffold-hbar-ui/components/styles.css";
 ```
 
 5. Install dependencies in scaffold-hbar:

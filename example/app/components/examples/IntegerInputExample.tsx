@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IntegerInput } from "@scaffold-ui/debug-contracts";
+import { IntegerInput } from "@scaffold-hbar-ui/debug-contracts";
 import { ExampleCard } from "../ExampleCard";
 
 export function IntegerInputExample() {

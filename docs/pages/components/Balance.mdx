@@ -3,7 +3,7 @@ layout: docs
 ---
 
 import React, { useMemo } from "react";
-import { Balance } from "@scaffold-ui/components";
+import { Balance } from "@scaffold-hbar-ui/components";
 import { DocsProvider } from "../../components/DocsProvider";
 
 # Balance Component
@@ -13,7 +13,7 @@ The `Balance` component displays the native token balance (e.g., ETH, MATIC, HBA
 ## Import
 
 ```tsx
-import { Balance } from "@scaffold-ui/components";
+import { Balance } from "@scaffold-hbar-ui/components";
 ```
 
 ## Props
@@ -78,7 +78,7 @@ import { hederaTestnet } from "viem/chains";
 On Hedera chains, pass a Hedera chain (e.g. `hederaTestnet`) and the component uses the HBAR price for USD conversion automatically.
 
 ```tsx
-import { Balance } from "@scaffold-ui/components";
+import { Balance } from "@scaffold-hbar-ui/components";
 import { hederaTestnet } from "viem/chains";
 
 <Balance

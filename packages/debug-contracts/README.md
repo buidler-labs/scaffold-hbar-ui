@@ -1,17 +1,17 @@
-# @scaffold-ui/debug-contracts
+# @scaffold-hbar-ui/debug-contracts
 
 Debug contracts component.
 
 ## Installation
 
-**Note**: This package requires `@scaffold-ui/components` and `@scaffold-ui/hooks` as peer dependencies.
+**Note**: This package requires `@scaffold-hbar-ui/components` and `@scaffold-hbar-ui/hooks` as peer dependencies.
 
 ```bash
-npm install @scaffold-ui/components @scaffold-ui/hooks @scaffold-ui/debug-contracts
+npm install @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks @scaffold-hbar-ui/debug-contracts
 # or
-yarn add @scaffold-ui/components @scaffold-ui/hooks @scaffold-ui/debug-contracts
+yarn add @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks @scaffold-hbar-ui/debug-contracts
 # or
-pnpm add @scaffold-ui/components @scaffold-ui/hooks @scaffold-ui/debug-contracts
+pnpm add @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks @scaffold-hbar-ui/debug-contracts
 ```
 
 #### Props
@@ -23,8 +23,8 @@ pnpm add @scaffold-ui/components @scaffold-ui/hooks @scaffold-ui/debug-contracts
 ## Usage
 
 ```tsx
-import { Contract } from "@scaffold-ui/debug-contracts";
-import "@scaffold-ui/debug-contracts/styles.css";
+import { Contract } from "@scaffold-hbar-ui/debug-contracts";
+import "@scaffold-hbar-ui/debug-contracts/styles.css";
 import { sepolia } from "viem/chains";
 
 // Define your deployed contracts
@@ -64,8 +64,8 @@ The input normalizes integer values so that applying one multiplier then the oth
 ### Example
 
 ```tsx
-import { IntegerInput } from "@scaffold-ui/debug-contracts";
-import "@scaffold-ui/debug-contracts/styles.css";
+import { IntegerInput } from "@scaffold-hbar-ui/debug-contracts";
+import "@scaffold-hbar-ui/debug-contracts/styles.css";
 
 function AmountForm() {
   const [value, setValue] = useState("");
@@ -87,7 +87,7 @@ The suffix shows **×1e8** and **×1e18** buttons; users type a base number (e.g
 If you only need the multiplier controls without the full integer input:
 
 ```tsx
-import { DecimalMultiplierButtons } from "@scaffold-ui/debug-contracts";
+import { DecimalMultiplierButtons } from "@scaffold-hbar-ui/debug-contracts";
 
 <DecimalMultiplierButtons
   value={value}

@@ -9,8 +9,8 @@ import { getAddress } from "viem";
 import type { Address, Chain } from "viem";
 import { hedera, hederaTestnet } from "viem/chains";
 import { useDisconnect } from "wagmi";
-import { Balance } from "@scaffold-ui/components";
-import { getBlockExplorerAddressLink, useHederaAccountId } from "@scaffold-ui/hooks";
+import { Balance } from "@scaffold-hbar-ui/components";
+import { getBlockExplorerAddressLink, useHederaAccountId } from "@scaffold-hbar-ui/hooks";
 import { blo } from "blo";
 
 const CHAIN_BY_ID: Record<number, Chain> = {
@@ -158,7 +158,7 @@ export const Header = () => {
               href="/"
               className="shrink-0 font-bold text-base text-base-content"
             >
-              Scaffold UI
+              Scaffold Hbar UI
             </Link>
             <nav className="hidden md:flex items-center gap-1">
               <NavLink href="/">Home</NavLink>

@@ -1,7 +1,7 @@
 "use client";
 
-import { Contract } from "@scaffold-ui/debug-contracts";
-import { getBlockExplorerAddressLink } from "@scaffold-ui/hooks";
+import { Contract } from "@scaffold-hbar-ui/debug-contracts";
+import { getBlockExplorerAddressLink } from "@scaffold-hbar-ui/hooks";
 import * as viemChains from "viem/chains";
 import type { Abi, Address, Chain } from "viem";
 import { extractChain, isAddressEqual, zeroAddress } from "viem";

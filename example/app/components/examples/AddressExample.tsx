@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import type { Address as AddressType } from "viem";
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 import { ExampleCard } from "../ExampleCard";
 import { DEMO_EVM_ADDRESS } from "./demoConstants";
 import { useChainId, useChains } from "wagmi";

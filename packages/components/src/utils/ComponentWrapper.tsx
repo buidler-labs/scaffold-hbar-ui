@@ -8,7 +8,7 @@ type ComponentWrapperProps<T extends ElementType = "div"> = {
 } & Omit<ComponentPropsWithoutRef<T>, "className" | "style" | "children" | "as">;
 
 /**
- * Base wrapper component for all scaffold-ui components.
+ * Base wrapper component for all scaffold-hbar-ui components.
  * Uses `font-sui` (font-family: var(--font-sui-family)); override `--font-sui-family` in global CSS to theme typography.
  */
 export const DefaultStylesWrapper = <T extends ElementType = "div">({

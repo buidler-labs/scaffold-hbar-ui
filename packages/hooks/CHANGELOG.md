@@ -1,4 +1,4 @@
-# @scaffold-ui/hooks
+# @scaffold-hbar-ui/hooks
 
 ## 0.1.6
 

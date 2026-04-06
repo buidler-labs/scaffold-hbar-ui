@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { hederaTestnet } from "viem/chains";
-import { HederaAddress } from "@scaffold-ui/components";
+import { HederaAddress } from "@scaffold-hbar-ui/components";
 import { useChainId, useChains } from "wagmi";
 import { ExampleCard } from "../ExampleCard";
 import { HEDERA_TESTNET_DEMO_EVM, INACTIVE_EVM_ADDRESS, MIRROR_NODE_DEMO_ACCOUNT_ID } from "./demoConstants";

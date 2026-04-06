@@ -1,20 +1,20 @@
-# @scaffold-ui/components
+# @scaffold-hbar-ui/components
 
-React components for scaffold-ui applications.
+React components for scaffold-hbar-ui applications.
 
 ## Installation
 
-**Note**: This package requires `@scaffold-ui/hooks` as a peer dependency.
+**Note**: This package requires `@scaffold-hbar-ui/hooks` as a peer dependency.
 
 ```bash
 # Install both packages
-npm install @scaffold-ui/components @scaffold-ui/hooks
+npm install @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks
 
 # Or with yarn
-yarn add @scaffold-ui/components @scaffold-ui/hooks
+yarn add @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks
 
 # Or with pnpm
-pnpm add @scaffold-ui/components @scaffold-ui/hooks
+pnpm add @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks
 ```
 
 ### Peer Dependencies
@@ -43,7 +43,7 @@ Displays an EVM-format address with blockie, copy, and block explorer link. Pass
 #### Example
 
 ```tsx
-import { Address } from "@scaffold-ui/components";
+import { Address } from "@scaffold-hbar-ui/components";
 import { hederaTestnet } from "viem/chains";
 
 <Address

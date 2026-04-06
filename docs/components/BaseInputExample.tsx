@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, ReactNode } from "react";
-import { BaseInput } from "@scaffold-ui/components";
+import { BaseInput } from "@scaffold-hbar-ui/components";
 
 interface BaseInputExampleProps {
   initialValue?: string;

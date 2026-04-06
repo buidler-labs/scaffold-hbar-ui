@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { HederaAddressInput } from "@scaffold-ui/components";
+import { HederaAddressInput } from "@scaffold-hbar-ui/components";
 import type { CSSProperties } from "react";
 
 interface HederaAddressInputExampleProps {

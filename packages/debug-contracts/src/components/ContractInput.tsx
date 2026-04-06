@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { AbiParameter } from "abitype";
-import { BaseInput, HederaAddressInput } from "@scaffold-ui/components";
+import { BaseInput, HederaAddressInput } from "@scaffold-hbar-ui/components";
 import { Bytes32Input } from "./inputs/Bytes32Input";
 import { BytesInput } from "./inputs/BytesInput";
 import { IntegerInput } from "./inputs/IntegerInput";

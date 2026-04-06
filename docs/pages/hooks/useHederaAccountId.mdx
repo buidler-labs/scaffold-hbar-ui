@@ -9,7 +9,7 @@ The `useHederaAccountId` hook resolves a Hedera account ID (`0.0.n`) for a check
 ## Import
 
 ```tsx
-import { useHederaAccountId, type HederaAccountIdStatus } from "@scaffold-ui/hooks";
+import { useHederaAccountId, type HederaAccountIdStatus } from "@scaffold-hbar-ui/hooks";
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ const { accountId, status, isLoading } = useHederaAccountId("0xd8da6bf26964af9d7
 
 ```tsx
 import React from "react";
-import { useHederaAccountId } from "@scaffold-ui/hooks";
+import { useHederaAccountId } from "@scaffold-hbar-ui/hooks";
 
 function AccountIdLookup({ evmAddress }: { evmAddress: string }) {
   const { accountId, status, isLoading } = useHederaAccountId(evmAddress, 296);
@@ -72,7 +72,7 @@ The library does not call mirror-node directly. Your app owns the data source. C
 - **Custom resolver:** `setHederaAccountIdResolver((evmAddress, network) => Promise<string | null>)`
 
 ```tsx
-import { setHederaAccountIdApiBase, setHederaAccountIdResolver } from "@scaffold-ui/hooks";
+import { setHederaAccountIdApiBase, setHederaAccountIdResolver } from "@scaffold-hbar-ui/hooks";
 
 // Option A: custom base URL
 setHederaAccountIdApiBase("https://your-api.com");

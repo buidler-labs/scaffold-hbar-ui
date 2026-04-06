@@ -2,7 +2,7 @@
 layout: docs
 ---
 
-import { HederaPortalFaucet } from "@scaffold-ui/components";
+import { HederaPortalFaucet } from "@scaffold-hbar-ui/components";
 import { DocsProvider } from "../../components/DocsProvider";
 
 # HederaPortalFaucet
@@ -18,7 +18,7 @@ Link to the [Hedera Portal testnet faucet](https://portal.hedera.com/faucet):
 ## Import
 
 ```tsx
-import { HederaPortalFaucet, hederaPortalFaucetUrl } from "@scaffold-ui/components";
+import { HederaPortalFaucet, hederaPortalFaucetUrl } from "@scaffold-hbar-ui/components";
 ```
 
 ## Props
@@ -41,7 +41,7 @@ function hederaPortalFaucetUrl(evmAddress?: string | null): string;
 Returns `https://portal.hedera.com/faucet` with an `address` search param when `evmAddress` is provided.
 
 ```tsx
-import { hederaPortalFaucetUrl } from "@scaffold-ui/components";
+import { hederaPortalFaucetUrl } from "@scaffold-hbar-ui/components";
 
 const url = hederaPortalFaucetUrl("0xd8da6bf26964af9d7eed9e03e53415d37aa96045");
 // https://portal.hedera.com/faucet?address=0xd8da6bf26964af9d7eed9e03e53415d37aa96045
@@ -133,4 +133,4 @@ Examples use `className="w-fit"` so the control stays content-sized inside the d
 
 - **[Balance](/components/Balance)** — Show HBAR balance for an address on a Hedera chain.
 - **[Address](/components/Address)** — Display an EVM address with explorer link.
-- **Example app:** [example/app/components/examples/HederaPortalFaucetExample.tsx](https://github.com/buidler-labs/scaffold-ui/tree/main/example/app/components/examples/HederaPortalFaucetExample.tsx) (full showcase).
+- **Example app:** [example/app/components/examples/HederaPortalFaucetExample.tsx](https://github.com/buidler-labs/scaffold-hbar-ui/tree/main/example/app/components/examples/HederaPortalFaucetExample.tsx) (full showcase).

@@ -1,4 +1,4 @@
-@import "@scaffold-ui/components/src/styles.css";
+@import "@scaffold-hbar-ui/components/src/styles.css";
 
 @custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
 

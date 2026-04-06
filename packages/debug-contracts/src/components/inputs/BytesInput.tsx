@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { bytesToString, isHex, toBytes, toHex } from "viem";
 import { CommonInputProps } from "../../utils/inputs";
-import { BaseInput } from "@scaffold-ui/components";
+import { BaseInput } from "@scaffold-hbar-ui/components";
 
 export const BytesInput = ({ value, onChange, name, placeholder, disabled }: CommonInputProps) => {
   const convertStringToBytes = useCallback(() => {

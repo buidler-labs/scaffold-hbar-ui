@@ -9,7 +9,7 @@ The `useHederaEvmAddress` hook resolves an EVM address (`0x…`) for a Hedera na
 ## Import
 
 ```tsx
-import { useHederaEvmAddress, type HederaEvmAddressStatus } from "@scaffold-ui/hooks";
+import { useHederaEvmAddress, type HederaEvmAddressStatus } from "@scaffold-hbar-ui/hooks";
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ const { evmAddress, status, isLoading } = useHederaEvmAddress("0.0.8392910", 296
 
 ```tsx
 import React from "react";
-import { useHederaEvmAddress } from "@scaffold-ui/hooks";
+import { useHederaEvmAddress } from "@scaffold-hbar-ui/hooks";
 
 function EvmLookup({ accountId }: { accountId: string }) {
   const { evmAddress, status, isLoading } = useHederaEvmAddress(accountId, 296);
@@ -67,4 +67,4 @@ function EvmLookup({ accountId }: { accountId: string }) {
 
 - **[useHederaAccountId](/hooks/useHederaAccountId)** — Reverse direction: EVM address → Hedera account ID.
 - **[HederaAddress](/components/HederaAddress)** — Display component that uses both hooks for bidirectional resolution.
-- **Resolver setup:** Configure with `setHederaEvmAddressResolver` or `setHederaEvmAddressApiBase` from `@scaffold-ui/hooks`. Default: same-origin `GET /api/hedera?accountId=…&network=…` returning `{ evmAddress }`.
+- **Resolver setup:** Configure with `setHederaEvmAddressResolver` or `setHederaEvmAddressApiBase` from `@scaffold-hbar-ui/hooks`. Default: same-origin `GET /api/hedera?accountId=…&network=…` returning `{ evmAddress }`.
