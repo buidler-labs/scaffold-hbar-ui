@@ -1,5 +1,20 @@
 # @scaffold-hbar-ui/components
 
+## 2.0.0
+
+### Patch Changes
+
+- Improve Hedera account resolution and align network handling across scaffold-hbar-ui packages.
+
+  In `@scaffold-hbar-ui/hooks`, account and EVM-address resolution now use Hedera mirror nodes directly for mainnet/testnet, with updated utilities and exports to simplify integration and improve consistency. Hook behavior and docs were updated to reflect the mirror-node-first flow.
+
+  In `@scaffold-hbar-ui/debug-contracts`, transaction explorer URL generation now reuses shared hook utilities, and Hedera-specific input behavior was narrowed to supported Hedera chain IDs (mainnet/testnet) for clearer network handling.
+
+  In `@scaffold-hbar-ui/components`, `HederaAddress` received import/style cleanup with no functional API changes.
+
+- Updated dependencies
+  - @scaffold-hbar-ui/hooks@1.1.0
+
 ## 0.1.8
 
 ### Patch Changes
