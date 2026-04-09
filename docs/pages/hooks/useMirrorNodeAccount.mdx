@@ -41,11 +41,10 @@ const result = useMirrorNodeAccount(undefined);
 
 ### Options
 
-| Option    | Type                       | Description                                                                     |
-| --------- | -------------------------- | ------------------------------------------------------------------------------- |
-| `network` | `"testnet" \| "mainnet"`   | Override network (otherwise derived from `chainId`).                            |
-| `chainId` | `number`                   | Chain ID to derive network (296 = testnet, 295 = mainnet). Defaults to testnet. |
-| `fetcher` | `MirrorNodeAccountFetcher` | Custom fetcher; overrides the default API call.                                 |
+| Option    | Type                     | Description                                                                     |
+| --------- | ------------------------ | ------------------------------------------------------------------------------- |
+| `network` | `"testnet" \| "mainnet"` | Override network (otherwise derived from `chainId`).                            |
+| `chainId` | `number`                 | Chain ID to derive network (296 = testnet, 295 = mainnet). Defaults to testnet. |
 
 ## Return Values
 
@@ -66,19 +65,12 @@ const result = useMirrorNodeAccount(undefined);
 | `balance`    | `bigint`                         | Balance in **tinybars** (8 decimals).                             |
 | `canSignEVM` | `boolean`                        | `true` when the account has an EVM alias (`evmAddress !== null`). |
 
-## Backend: Default API or Custom Fetcher
+## Mirror Node
 
-By default the hook calls **same-origin** `${apiBase}/api/hedera?input=...&network=...`. The host app must implement that route (e.g. by proxying to the [Hedera Mirror Node REST API](https://docs.hedera.com/api-reference/accounts/get-account-by-alias-id-or-evm-address)) and return JSON:
+The hook calls the **Hedera mirror node directly**. The mirror host follows the logical network from `options.network` or `chainIdToHederaNetwork(chainId)`:
 
-- `accountId` (string)
-- `evmAddress` (string | null)
-- `keyType` (`"ED25519"` | `"ECDSA_SECP256K1"`)
-- `balance` (string or number, tinybars)
-
-You can:
-
-- **Set API base:** `setMirrorNodeAccountApiBase("https://your-app.com")` so the default fetch uses that origin.
-- **Inject a custom fetcher:** `setMirrorNodeAccountFetcher(async (input, network) => { ... return HederaAccount | null; })` so the hook never calls the default URL (e.g. use your own backend or mirror client).
+- **mainnet** → `https://mainnet.mirrornode.hedera.com/api/v1/accounts/{input}`
+- **testnet** → `https://testnet.mirrornode.hedera.com/api/v1/accounts/{input}`
 
 ## Caching
 
@@ -113,4 +105,4 @@ function AccountSummary({ accountIdOrEvm }: { accountIdOrEvm: string }) {
 }
 ```
 
-A full working demo (with `GET /api/hedera`) is in the [example app](https://github.com/buidler-labs/scaffold-hbar-ui/tree/main/example).
+A full working demo is in the [example app](https://github.com/buidler-labs/scaffold-hbar-ui/tree/main/example).

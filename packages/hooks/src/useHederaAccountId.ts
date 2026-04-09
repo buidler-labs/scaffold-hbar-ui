@@ -13,9 +13,9 @@ import { chainIdToHederaNetwork, getHederaAccountId } from "./hederaUtils";
 export type HederaAccountIdStatus = "idle" | "pending" | "success" | "not-found" | "error";
 
 /**
- * Resolves a Hedera account ID (`0.0.n`) for a checksummed EVM address using `getHederaAccountId`
- * (same-origin `/api/hedera` or injected resolver). Uses TanStack Query for caching, deduplication,
- * and abort when the address/chain changes (same pattern as `useFetchNativeCurrencyPrice`).
+ * Resolves a Hedera account ID (`0.0.n`) for a checksummed EVM address by querying
+ * the Hedera mirror node directly. Uses TanStack Query for caching, deduplication,
+ * and abort when the address/chain changes.
  */
 export function useHederaAccountId(evmAddress: string | undefined, chainId?: number) {
   const chainKey = chainId ?? 296;

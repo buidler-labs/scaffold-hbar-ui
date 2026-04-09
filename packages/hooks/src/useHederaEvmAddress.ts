@@ -16,9 +16,9 @@ const NATIVE_ACCOUNT_ID_RE = /^\d+\.\d+\.\d+$/;
 export type HederaEvmAddressStatus = "idle" | "pending" | "success" | "not-found" | "error";
 
 /**
- * Resolves an EVM address (`0x…`) for a Hedera native account ID (`0.0.n`) using
- * `getEvmAddressFromHederaAccountId` (same-origin `/api/hedera` or injected resolver).
- * Uses TanStack Query for caching, deduplication, and abort on param changes.
+ * Resolves an EVM address (`0x…`) for a Hedera native account ID (`0.0.n`) by querying
+ * the Hedera mirror node directly. Uses TanStack Query for caching, deduplication,
+ * and abort on param changes.
  */
 export function useHederaEvmAddress(accountId: string | undefined, chainId?: number) {
   const chainKey = chainId ?? 296;

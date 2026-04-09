@@ -1,10 +1,10 @@
+import { getBlockExplorerTxLink } from "@scaffold-hbar-ui/hooks";
 import { Hash, SendTransactionParameters, TransactionReceipt, WalletClient } from "viem";
 import { Config, useConfig, useWalletClient } from "wagmi";
 import { getPublicClient } from "wagmi/actions";
 import { SendTransactionMutate } from "wagmi/query";
 import { getParsedError } from "../utils/getParsedError";
 import { notification } from "../utils/notification";
-import { getBlockExplorerTxLink } from "../utils/networks";
 
 type TransactorFuncOptions = {
   onBlockConfirmation?: (txnReceipt: TransactionReceipt) => void;

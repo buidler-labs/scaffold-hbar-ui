@@ -33,13 +33,15 @@ export function getBlockExplorerAddressLink(network: Chain, address: string) {
 
 /**
  * Block explorer URL for a transaction hash on the chain with the given numeric id.
- * Resolves the chain from viem's chain registry (`viem/chains`).
+ * Looks up `chainId` in viem's `viem/chains` registry (same approach as Scaffold-HBAR `networks.ts`).
  */
 export function getBlockExplorerTxLink(chainId: number, txnHash: string): string {
-  const chain = Object.values(viemChains).find(
-    c => typeof c === "object" && c !== null && "id" in c && (c as { id: number }).id === chainId,
-  ) as Chain | undefined;
-  const baseUrl = chain?.blockExplorers?.default?.url;
+  const chainNames = Object.keys(viemChains) as (keyof typeof viemChains)[];
+  const name = chainNames.find((key) => viemChains[key].id === chainId);
+  if (name === undefined) return "";
+
+  const chain = viemChains[name] as Chain;
+  const baseUrl = chain.blockExplorers?.default?.url;
   if (!baseUrl) return "";
   return `${baseUrl}/tx/${txnHash}`;
 }

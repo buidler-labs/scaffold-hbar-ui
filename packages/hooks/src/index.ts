@@ -3,32 +3,19 @@ export { useBalance, useWatchBalance } from "./balance/index";
 export { useFetchNativeCurrencyPrice } from "./useFetchNativeCurrencyPrice";
 export { useFetchHbarPrice } from "./useFetchHbarPrice";
 export {
-  setHederaAccountIdResolver,
-  getHederaAccountIdResolver,
-  setHederaAccountIdApiBase,
-  getHederaAccountIdApiBase,
-  setHederaEvmAddressResolver,
-  getHederaEvmAddressResolver,
-  setHederaEvmAddressApiBase,
-  getHederaEvmAddressApiBase,
   chainIdToHederaNetwork,
   HEDERA_CHAIN_IDS,
+  getHederaAccountId,
   getEvmAddressFromHederaAccountId,
-  type HederaAccountIdResolver,
-  type HederaEvmAddressResolver,
   type HederaNetwork,
 } from "./hederaUtils";
+export { fetchMirrorAccount, type MirrorAccountData } from "./mirrorNode";
 export { useHederaAccountId, type HederaAccountIdStatus } from "./useHederaAccountId";
 export { useHederaEvmAddress, type HederaEvmAddressStatus } from "./useHederaEvmAddress";
 export {
   useMirrorNodeAccount,
-  setMirrorNodeAccountFetcher,
-  getMirrorNodeAccountFetcher,
-  setMirrorNodeAccountApiBase,
-  getMirrorNodeAccountApiBase,
   type HederaAccount,
   type HederaKeyType,
-  type MirrorNodeAccountFetcher,
   type UseMirrorNodeAccountOptions,
 } from "./useMirrorNodeAccount";
 export {
@@ -48,11 +35,7 @@ export {
   type NativeTransactionSigner,
   type UseNativeTransactionResult,
 } from "./useNativeTransaction";
-export {
-  useCreateTopic,
-  type CreateTopicParams,
-  type UseCreateTopicOptions,
-} from "./useCreateTopic";
+export { useCreateTopic, type CreateTopicParams, type UseCreateTopicOptions } from "./useCreateTopic";
 export {
   useCreateToken,
   type CreateTokenParams,

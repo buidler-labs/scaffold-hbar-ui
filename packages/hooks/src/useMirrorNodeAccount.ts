@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import type { HederaNetwork } from "./hederaUtils";
 import { chainIdToHederaNetwork } from "./hederaUtils";
+import { fetchMirrorAccount, resolveEvmAddress, type HederaKeyType } from "./mirrorNode";
 
-/** Key type reported by the mirror node (account's public key). */
-export type HederaKeyType = "ED25519" | "ECDSA_SECP256K1";
+export type { HederaKeyType } from "./mirrorNode";
 
 /**
- * Full account data from a single mirror-node (or app API) call.
+ * Full account data from a single mirror-node call.
  * Use this as the single source of truth for identity, key type, and balance.
  */
 export type HederaAccount = {
@@ -22,89 +22,25 @@ export type HederaAccount = {
   canSignEVM: boolean;
 };
 
-/**
- * Fetcher that returns full Hedera account data for a given input (EVM address or account ID).
- * The host app can inject this to use its own mirror-node client or API.
- */
-export type MirrorNodeAccountFetcher = (input: string, network: HederaNetwork) => Promise<HederaAccount | null>;
-
-let mirrorAccountFetcher: MirrorNodeAccountFetcher | undefined;
-let mirrorAccountApiBase = "";
-
-/**
- * Inject a custom fetcher for full mirror-node account data.
- * When set, it is used instead of the configurable default endpoint.
- */
-export function setMirrorNodeAccountFetcher(fetcher: MirrorNodeAccountFetcher | undefined): void {
-  mirrorAccountFetcher = fetcher;
-}
-
-export function getMirrorNodeAccountFetcher(): MirrorNodeAccountFetcher | undefined {
-  return mirrorAccountFetcher;
-}
-
-/**
- * Set the base URL for the default Hedera mirror API (e.g. "" for same-origin).
- * Default fetch calls `${base}/api/hedera?input=...&network=...`.
- * Ignored if a custom fetcher is set via setMirrorNodeAccountFetcher.
- */
-export function setMirrorNodeAccountApiBase(base: string): void {
-  mirrorAccountApiBase = base;
-}
-
-export function getMirrorNodeAccountApiBase(): string {
-  return mirrorAccountApiBase;
-}
-
 const STALE_TIME_MS = 30_000;
 const GC_TIME_MS = 5 * 60_000;
 
-function defaultFetchAccount(input: string, network: HederaNetwork): Promise<HederaAccount | null> {
-  if (mirrorAccountFetcher) {
-    return mirrorAccountFetcher(input, network);
-  }
+async function fetchAccount(
+  input: string,
+  network: HederaNetwork,
+  signal?: AbortSignal,
+): Promise<HederaAccount | null> {
+  const data = await fetchMirrorAccount(input, network, signal);
+  if (!data) return null;
+  const evmAddress = resolveEvmAddress(data);
 
-  const base = mirrorAccountApiBase.replace(/\/$/, "");
-  const path = "/api/hedera";
-  const url = base ? `${base}${path}` : path;
-  const params = new URLSearchParams({ input: input.trim(), network });
-
-  return fetch(`${url}?${params}`)
-    .then(async (res) => {
-      if (!res.ok) {
-        const body = (await res.json().catch(() => ({}))) as { error?: string };
-        if (body.error) throw new Error(body.error);
-        return null;
-      }
-      const data = (await res.json()) as {
-        accountId?: string;
-        evmAddress?: string | null;
-        keyType?: string;
-        balance?: string | number;
-      };
-      if (!data.accountId) return null;
-
-      const balance =
-        typeof data.balance === "string"
-          ? BigInt(data.balance)
-          : typeof data.balance === "number"
-            ? BigInt(data.balance)
-            : 0n;
-
-      const keyType: HederaKeyType =
-        data.keyType === "ECDSA_SECP256K1" || data.keyType === "ED25519" ? data.keyType : "ED25519";
-
-      const evmAddress = typeof data.evmAddress === "string" && data.evmAddress.length > 0 ? data.evmAddress : null;
-
-      return {
-        accountId: data.accountId,
-        evmAddress,
-        keyType,
-        balance,
-        canSignEVM: evmAddress !== null,
-      };
-    })
-    .catch(() => null);
+  return {
+    accountId: data.accountId,
+    evmAddress,
+    keyType: data.keyType,
+    balance: data.balanceTinybars,
+    canSignEVM: evmAddress !== null,
+  };
 }
 
 export type UseMirrorNodeAccountOptions = {
@@ -112,8 +48,6 @@ export type UseMirrorNodeAccountOptions = {
   network?: HederaNetwork;
   /** Chain ID to derive network from (296 = testnet, 295 = mainnet). */
   chainId?: number;
-  /** Custom fetcher; overrides default API call. */
-  fetcher?: MirrorNodeAccountFetcher;
 };
 
 /**
@@ -122,8 +56,8 @@ export type UseMirrorNodeAccountOptions = {
  * Cached with React Query so multiple components sharing the same input reuse one request.
  *
  * @param input - EVM address or Hedera account ID, or undefined to skip the request
- * @param options - Optional network, chainId, or custom fetcher
- * @returns { data, isLoading, isError, refetch } — data is HederaAccount | null when resolved
+ * @param options - Optional network or chainId
+ * @returns { data, isLoading, isError, refetch } -- data is HederaAccount | null when resolved
  */
 export function useMirrorNodeAccount(
   input: string | undefined,
@@ -134,14 +68,13 @@ export function useMirrorNodeAccount(
   isError: boolean;
   refetch: () => void;
 } {
-  const { network, chainId, fetcher } = options;
+  const { network, chainId } = options;
   const normalizedInput = typeof input === "string" ? input.trim() : "";
   const effectiveNetwork = network ?? chainIdToHederaNetwork(chainId ?? 296);
-  const queryFn = fetcher ?? defaultFetchAccount;
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["mirrorNode", "account", normalizedInput, effectiveNetwork],
-    queryFn: () => queryFn(normalizedInput, effectiveNetwork),
+    queryFn: ({ signal }) => fetchAccount(normalizedInput, effectiveNetwork, signal),
     enabled: normalizedInput.length > 0,
     staleTime: STALE_TIME_MS,
     gcTime: GC_TIME_MS,

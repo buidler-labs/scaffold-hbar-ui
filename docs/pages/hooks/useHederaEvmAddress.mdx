@@ -4,7 +4,7 @@ layout: docs
 
 # useHederaEvmAddress Hook
 
-The `useHederaEvmAddress` hook resolves an EVM address (`0x…`) for a Hedera native account ID (`0.0.n`) using the mirror node (same-origin `/api/hedera` or injected resolver).
+The `useHederaEvmAddress` hook resolves an EVM address (`0x…`) for a Hedera native account ID (`0.0.n`) by querying the Hedera mirror node directly.
 
 ## Import
 
@@ -67,4 +67,4 @@ function EvmLookup({ accountId }: { accountId: string }) {
 
 - **[useHederaAccountId](/hooks/useHederaAccountId)** — Reverse direction: EVM address → Hedera account ID.
 - **[HederaAddress](/components/HederaAddress)** — Display component that uses both hooks for bidirectional resolution.
-- **Resolver setup:** Configure with `setHederaEvmAddressResolver` or `setHederaEvmAddressApiBase` from `@scaffold-hbar-ui/hooks`. Default: same-origin `GET /api/hedera?accountId=…&network=…` returning `{ evmAddress }`.
+- **Mirror node:** Resolution queries the Hedera mirror node directly; the host follows `chainId` (mainnet vs testnet).
