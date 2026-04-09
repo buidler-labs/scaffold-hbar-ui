@@ -13,12 +13,12 @@ The `HederaAddress` component displays a Hedera address with automatic **bidirec
 
 ## Behavior
 
-- **With EVM address (`0x…`):** Resolves to Hedera account ID via the host's `/api/hedera?evm=...` (or custom resolver). Shows account ID as primary, optional "EVM: 0x..." as secondary. While resolving, shows "Resolving Hedera Account ID…".
-- **With native account ID (`0.0.n`):** Resolves to EVM address via `/api/hedera?accountId=...` (or custom resolver). Shows account ID as primary, resolved EVM as secondary. While resolving, shows "Resolving EVM address…".
+- **With EVM address (`0x…`):** Resolves to Hedera account ID via the mirror node. Shows account ID as primary, optional "EVM: 0x..." as secondary. While resolving, shows "Resolving Hedera Account ID…".
+- **With native account ID (`0.0.n`):** Resolves to EVM address via the mirror node. Shows account ID as primary, resolved EVM as secondary. While resolving, shows "Resolving EVM address…".
 - **Explorer link:** Uses Hedera-aware URLs (e.g. HashScan `/account/` for Hedera chains) via `getBlockExplorerAddressLink` from `@scaffold-hbar-ui/hooks`. Pass **`blockExplorerAddressLink`** to override the URL used for the primary line's link.
 - **Invalid value:** If `value` is non-empty but matches neither a valid EVM address nor a valid `0.0.n` pattern, the component shows an error row.
 
-The host app must provide `GET /api/hedera` (or set the appropriate resolvers from `@scaffold-hbar-ui/hooks`) for bidirectional resolution.
+Resolution queries the Hedera mirror node directly. The mirror host follows the `chain` you pass in (mainnet vs testnet / local).
 
 ## Import
 
@@ -147,4 +147,4 @@ When `value` is not provided, the component shows a loading skeleton.
 
 - **[Address](/components/Address)** – Display Ethereum addresses (ENS, blockie, copy).
 - **[HederaAddressInput](/components/HederaAddressInput)** – Input for Hedera (EVM or native account ID) with resolution.
-- **Hooks:** Resolution uses `useHederaAccountId` (EVM → account ID) and `useHederaEvmAddress` (account ID → EVM) from `@scaffold-hbar-ui/hooks`. Override with `setHederaAccountIdResolver` / `setHederaEvmAddressResolver` or their API base setters.
+- **Hooks:** Resolution uses `useHederaAccountId` (EVM → account ID) and `useHederaEvmAddress` (account ID → EVM) from `@scaffold-hbar-ui/hooks`, querying the mirror node directly.

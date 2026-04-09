@@ -24,10 +24,7 @@ Hedera **long-zero** EVM aliases (e.g. `0x000…001c` for `0.0.28`) are accepted
 - **Disabled:** The field is temporarily disabled only while **resolving native account ID → EVM** (so the raw `0.0.n` text does not change mid-flight). While **EVM → account ID** is resolving, the input stays enabled; the **pending** border and suffix (`Resolving…`) show progress instead.
 - **UI**: `BaseInput` — default border when idle or resolved (suffix shows conversion and a **copy** control for the resolved value), **pending** uses a neutral `base-content` tint on the border while resolving, **error** uses the input error token. The outer wrapper sets **`aria-busy`** while a lookup is in progress and there is no blocking error (assistive tech can treat the field as busy during resolution).
 
-The host app must provide resolution endpoints (or custom resolvers from `@scaffold-hbar-ui/hooks`):
-
-- **EVM → account ID:** same-origin `GET /api/hedera?evm=...&network=testnet|mainnet` returning `{ accountId }`.
-- **Account ID → EVM:** same-origin `GET /api/hedera?accountId=...&network=...` returning `{ evmAddress }`.
+Resolution queries the Hedera mirror node directly. The mirror host follows `chainId` (mainnet vs testnet / local).
 
 ## Import
 
@@ -113,4 +110,4 @@ import { HederaAddressInput } from "@scaffold-hbar-ui/components";
 
 - **[Address](/components/Address)** – Display an address with blockie and copy.
 - **[useHederaAddressInput](/hooks/useHederaAddressInput)** — Headless validation and resolution used by this component.
-- **Hooks:** Resolution uses the same endpoints as the account ID ↔ EVM resolvers in `@scaffold-hbar-ui/hooks`. Override with `setHederaAccountIdResolver` (EVM → account ID) or `setHederaEvmAddressResolver` (account ID → EVM).
+- **Hooks:** Resolution uses `useHederaAddressInput` from `@scaffold-hbar-ui/hooks`, querying the mirror node directly.

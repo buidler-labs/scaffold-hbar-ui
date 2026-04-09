@@ -4,7 +4,7 @@ layout: docs
 
 # useHederaAccountId Hook
 
-The `useHederaAccountId` hook resolves a Hedera account ID (`0.0.n`) for a checksummed EVM address using the mirror node (same-origin `/api/hedera` or injected resolver).
+The `useHederaAccountId` hook resolves a Hedera account ID (`0.0.n`) for a checksummed EVM address by querying the Hedera mirror node directly.
 
 ## Import
 
@@ -63,27 +63,9 @@ function AccountIdLookup({ evmAddress }: { evmAddress: string }) {
 }
 ```
 
-## Configuring resolution
+## Mirror Node
 
-The library does not call mirror-node directly. Your app owns the data source. Configure once at startup:
-
-- **Same-origin API (default):** If your app serves `GET /api/hedera?evm=…&network=…`, no configuration needed.
-- **Custom base URL:** `setHederaAccountIdApiBase('https://your-api.com')`
-- **Custom resolver:** `setHederaAccountIdResolver((evmAddress, network) => Promise<string | null>)`
-
-```tsx
-import { setHederaAccountIdApiBase, setHederaAccountIdResolver } from "@scaffold-hbar-ui/hooks";
-
-// Option A: custom base URL
-setHederaAccountIdApiBase("https://your-api.com");
-
-// Option B: custom resolver
-setHederaAccountIdResolver(async (evmAddress, network) => {
-  const res = await fetch(`/api/hedera?evm=${evmAddress}&network=${network}`);
-  const data = await res.json();
-  return data.accountId ?? null;
-});
-```
+The hook queries the Hedera mirror node directly. The mirror host is chosen from `chainId` (mainnet vs testnet / local), same as other Hedera resolution hooks.
 
 ## Related
 
