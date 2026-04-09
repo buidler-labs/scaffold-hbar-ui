@@ -65,7 +65,7 @@ All Hedera account resolution (EVM ↔ account ID) calls the **Hedera mirror nod
 The mirror base URL is chosen from the **network** implied by each hook’s `chainId` (via `chainIdToHederaNetwork`):
 
 - **mainnet** (chain `295`) → `https://mainnet.mirrornode.hedera.com`
-- **testnet** (chain `296`) and **local** (`31337`) → `https://testnet.mirrornode.hedera.com`
+- **testnet** (chain `296`) → `https://testnet.mirrornode.hedera.com`
 
 ### useHederaAccountId
 

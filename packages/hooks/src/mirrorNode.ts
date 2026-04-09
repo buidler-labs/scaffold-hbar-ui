@@ -47,7 +47,7 @@ function parseMirrorAccount(data: MirrorNodeAccountJson): MirrorAccountData | nu
 
 /**
  * Fetch account data directly from the Hedera mirror node REST API.
- * The mirror host is chosen from `network` (`mainnet` vs `testnet` / `local`).
+ * The mirror host is chosen from `network` (`mainnet` vs `testnet`).
  *
  * @param addressOrId - EVM address (`0x...`) or Hedera account ID (`0.0.n`)
  * @param network - Logical network from `chainIdToHederaNetwork(chainId)`

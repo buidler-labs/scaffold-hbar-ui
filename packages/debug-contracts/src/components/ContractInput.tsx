@@ -12,8 +12,8 @@ import { Tuple } from "./Tuple";
 import { TupleArray } from "./TupleArray";
 import { useContractConfig } from "../contexts/ContractConfigContext";
 
-/** Hedera chain IDs – use HederaAddressInput (0x or 0.0.x) on these. Includes local fork (31337). */
-const HEDERA_CHAIN_IDS = new Set([295, 296, 31337]);
+/** Hedera chain IDs – use HederaAddressInput (0x or 0.0.x) on these. */
+const HEDERA_CHAIN_IDS = new Set([295, 296]);
 
 type ContractInputProps = {
   setForm: Dispatch<SetStateAction<Record<string, any>>>;

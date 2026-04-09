@@ -1,11 +1,10 @@
 import { fetchMirrorAccount } from "./mirrorNode";
 
-export type HederaNetwork = "testnet" | "mainnet" | "local";
+export type HederaNetwork = "testnet" | "mainnet";
 
 const CHAIN_ID_TO_NETWORK: Record<number, HederaNetwork> = {
   295: "mainnet",
   296: "testnet",
-  31337: "local",
 };
 
 /** Set of Hedera chain IDs (mainnet and testnet). Use for native price and explorer link logic. */

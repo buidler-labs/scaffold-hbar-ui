@@ -18,7 +18,7 @@ The `HederaAddress` component displays a Hedera address with automatic **bidirec
 - **Explorer link:** Uses Hedera-aware URLs (e.g. HashScan `/account/` for Hedera chains) via `getBlockExplorerAddressLink` from `@scaffold-hbar-ui/hooks`. Pass **`blockExplorerAddressLink`** to override the URL used for the primary line's link.
 - **Invalid value:** If `value` is non-empty but matches neither a valid EVM address nor a valid `0.0.n` pattern, the component shows an error row.
 
-Resolution queries the Hedera mirror node directly. The mirror host follows the `chain` you pass in (mainnet vs testnet / local).
+Resolution queries the Hedera mirror node directly. The mirror host follows the `chain` you pass in (mainnet vs testnet).
 
 ## Import
 

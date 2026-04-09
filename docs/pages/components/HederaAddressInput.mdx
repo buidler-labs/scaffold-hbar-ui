@@ -24,7 +24,7 @@ Hedera **long-zero** EVM aliases (e.g. `0x000…001c` for `0.0.28`) are accepted
 - **Disabled:** The field is temporarily disabled only while **resolving native account ID → EVM** (so the raw `0.0.n` text does not change mid-flight). While **EVM → account ID** is resolving, the input stays enabled; the **pending** border and suffix (`Resolving…`) show progress instead.
 - **UI**: `BaseInput` — default border when idle or resolved (suffix shows conversion and a **copy** control for the resolved value), **pending** uses a neutral `base-content` tint on the border while resolving, **error** uses the input error token. The outer wrapper sets **`aria-busy`** while a lookup is in progress and there is no blocking error (assistive tech can treat the field as busy during resolution).
 
-Resolution queries the Hedera mirror node directly. The mirror host follows `chainId` (mainnet vs testnet / local).
+Resolution queries the Hedera mirror node directly. The mirror host follows `chainId` (mainnet vs testnet).
 
 ## Import
 
