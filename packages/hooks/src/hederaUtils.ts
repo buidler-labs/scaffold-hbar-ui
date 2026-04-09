@@ -1,4 +1,4 @@
-import { fetchMirrorAccount } from "./mirrorNode";
+import { fetchMirrorAccount, resolveEvmAddress } from "./mirrorNode";
 
 export type HederaNetwork = "testnet" | "mainnet";
 
@@ -50,8 +50,5 @@ export async function getEvmAddressFromHederaAccountId(
 ): Promise<string | null> {
   const data = await fetchMirrorAccount(accountId, network, options?.signal);
   if (!data) return null;
-
-  if (data.evmAddress) return data.evmAddress;
-  if (data.alias && data.alias.startsWith("0x")) return data.alias;
-  return null;
+  return resolveEvmAddress(data);
 }

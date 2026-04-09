@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import type { HederaNetwork } from "./hederaUtils";
 import { chainIdToHederaNetwork } from "./hederaUtils";
-import { fetchMirrorAccount, type HederaKeyType } from "./mirrorNode";
+import { fetchMirrorAccount, resolveEvmAddress, type HederaKeyType } from "./mirrorNode";
 
 export type { HederaKeyType } from "./mirrorNode";
 
@@ -25,16 +25,21 @@ export type HederaAccount = {
 const STALE_TIME_MS = 30_000;
 const GC_TIME_MS = 5 * 60_000;
 
-async function fetchAccount(input: string, network: HederaNetwork): Promise<HederaAccount | null> {
-  const data = await fetchMirrorAccount(input, network);
+async function fetchAccount(
+  input: string,
+  network: HederaNetwork,
+  signal?: AbortSignal,
+): Promise<HederaAccount | null> {
+  const data = await fetchMirrorAccount(input, network, signal);
   if (!data) return null;
+  const evmAddress = resolveEvmAddress(data);
 
   return {
     accountId: data.accountId,
-    evmAddress: data.evmAddress,
+    evmAddress,
     keyType: data.keyType,
     balance: data.balanceTinybars,
-    canSignEVM: data.evmAddress !== null,
+    canSignEVM: evmAddress !== null,
   };
 }
 
@@ -69,7 +74,7 @@ export function useMirrorNodeAccount(
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["mirrorNode", "account", normalizedInput, effectiveNetwork],
-    queryFn: () => fetchAccount(normalizedInput, effectiveNetwork),
+    queryFn: ({ signal }) => fetchAccount(normalizedInput, effectiveNetwork, signal),
     enabled: normalizedInput.length > 0,
     staleTime: STALE_TIME_MS,
     gcTime: GC_TIME_MS,

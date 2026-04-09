@@ -20,6 +20,16 @@ export type MirrorAccountData = {
   balanceTinybars: bigint;
 };
 
+/**
+ * Resolves the best EVM address representation from mirror account data.
+ * Prefer `evm_address`, otherwise accept `alias` only when it is 0x-prefixed.
+ */
+export function resolveEvmAddress(data: Pick<MirrorAccountData, "evmAddress" | "alias">): string | null {
+  if (data.evmAddress) return data.evmAddress;
+  if (data.alias && data.alias.startsWith("0x")) return data.alias;
+  return null;
+}
+
 const TESTNET_MIRROR = "https://testnet.mirrornode.hedera.com";
 const MAINNET_MIRROR = "https://mainnet.mirrornode.hedera.com";
 
