@@ -3,3 +3,6 @@ node_modules
 .pnpm-debug.log
 dist
 *.tsbuildinfo
+
+# Local MCP client config (developer-specific; points at a local build path)
+.cursor/mcp.json

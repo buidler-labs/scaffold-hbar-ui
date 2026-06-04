@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "scaffold-hbar-ui": {
-      "command": "node",
-      "args": ["/Users/sebastianraba/Work/scaffold-ui/packages/mcp-server/dist/esm/bin/scaffold-hbar-ui-mcp.js"]
-    }
-  }
-}
