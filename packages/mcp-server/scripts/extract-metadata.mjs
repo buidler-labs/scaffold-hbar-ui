@@ -93,11 +93,34 @@ function listMdxBasenames(dir) {
     .sort();
 }
 
-function firstLine(markdown) {
-  const line = markdown
-    .split("\n")
-    .find((text) => text.trim().length > 0 && !text.trim().startsWith("#"));
-  return line ? line.replace(/^[*-]\s*/, "").slice(0, 200) : "";
+/**
+ * First meaningful prose line of an MDX body, used as a short catalog description.
+ * Skips import/export statements, fenced code, JSX, headings, and tables so the
+ * description is real prose rather than the leading `import ...` line.
+ */
+function extractDescription(markdown) {
+  let inCodeFence = false;
+  for (const rawLine of markdown.split("\n")) {
+    const line = rawLine.trim();
+    if (line.startsWith("```")) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (
+      inCodeFence ||
+      line.length === 0 ||
+      line.startsWith("#") ||
+      line.startsWith("import ") ||
+      line.startsWith("export ") ||
+      line.startsWith("<") ||
+      line.startsWith("|") ||
+      line.startsWith(":::")
+    ) {
+      continue;
+    }
+    return line.replace(/^[*-]\s+/, "").slice(0, 200);
+  }
+  return "";
 }
 
 // --- MDX docs ----------------------------------------------------------------
@@ -347,7 +370,7 @@ function buildInstallationSnippet(componentsReadme) {
 function toCatalog(docs) {
   return Object.keys(docs).map((name) => ({
     name,
-    description: firstLine(docs[name].body),
+    description: extractDescription(docs[name].body),
   }));
 }
 
@@ -368,7 +391,7 @@ function collectExamples(dir) {
 // --- Main --------------------------------------------------------------------
 
 function main() {
-  const components = collectMdxDocs(DOC_DIRS.components);
+  const components = collectMdxDocs(DOC_DIRS.components, { skip: ["index"] });
   const hooks = collectMdxDocs(DOC_DIRS.hooks, { skip: ["index"] });
   const debugContracts = collectMdxDocs(DOC_DIRS.debugContracts);
 

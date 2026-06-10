@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-03T10:12:04.245Z",
+  "generatedAt": "2026-06-03T12:23:37.188Z",
   "components": {
     "Address": {
       "title": "Address",
@@ -46,11 +46,6 @@
       "title": "Theming",
       "body": "import React, { useMemo } from \"react\";\nimport { DocsProvider } from \"../../components/DocsProvider\";\nimport { HbarInput } from \"@scaffold-hbar-ui/components\";\n\n# Theming\n\n:::info\nBefore reading this page, we recommend checking out the [Styling](/components/Styling) page to understand the basics of styling Scaffold-Hbar-UI components.\n:::\n\n## Typography (Hedera brand alignment)\n\nHedera’s brand guidelines specify **Styrene A** as the primary typeface (commercial license required) and **Montserrat** as the replacement font for broader use (presentations, documents, and web when Styrene is not licensed).\n\n**This library**\n\n- Exposes **`--font-sui-family`**. Wrapped components use the `font-sui` utility (`font-family: var(--font-sui-family)`).\n- **Default in `@scaffold-hbar-ui/components`:** stack starts with **Montserrat** (load it yourself, e.g. [Google Fonts](https://fonts.google.com/specimen/Montserrat)) so open-source consumers stay aligned without bundling Styrene.\n- **With a Styrene license:** set the same stack your brand team approves, e.g.  \n  `:root { --font-sui-family: \"Styrene A Web\", \"Montserrat\", ui-sans-serif, system-ui, sans-serif; }`  \n  after loading `@font-face` for Styrene.\n\n**Import order:** load font CSS (or `next/font`) first, then `@scaffold-hbar-ui/components/styles.css`, then any overrides to `:root` / `.dark`.\n\n## Dark Theme\n\nAll Scaffold-Hbar-UI component styles use theme variables defined in [packages/components/src/styles.css](https://github.com/buidler-labs/scaffold-hbar-ui/blob/main/packages/components/src/styles.css).\n\nThe stylesheet includes dark theme styles that automatically apply based on your theme configuration.\n\n```css\n@import \"tailwindcss\";\n\n@custom-variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));\n\n...\n\n@variant dark {\n  --color-sui-primary: #212638;\n  ...\n}\n\n```\n\nTo enable dark mode, add either a `.dark` class or a `[data-theme=dark]` attribute to a parent element (typically the `<html>` or `<body>` tag). This will automatically apply the dark variant colors to all child components.\n\n### Setup\n\n- **Next.js apps**: We recommend using the `next-themes` library. See example implementations of [SwitchTheme](https://github.com/buidler-labs/scaffold-hbar-ui/blob/main/example/app/components/SwitchTheme.tsx) and [ThemeProvider](https://github.com/buidler-labs/scaffold-hbar-ui/blob/main/example/app/components/ThemeProvider.tsx).\n- **create-hbar apps**: These components are already included and configured.\n\n### Live Example\n\nUse the theme switcher in the bottom left corner to see how the component colors change between light and dark modes.\n\n<DocsProvider>\n  <HbarInput placeholder=\"Amount in HBAR or USD\" />\n</DocsProvider>\n\n```tsx twoslash\nimport React from \"react\";\nimport { HbarInput } from \"@scaffold-hbar-ui/components\";\n\n<HbarInput placeholder=\"Amount in HBAR or USD\" />;\n```\n\n## Customizing Theme Colors Globally\n\nYou can override the default theme colors by redefining CSS variables in your global stylesheet **after** importing `@scaffold-hbar-ui/components/styles.css`.\n\n```css\n/* Override Scaffold Hbar UI theme colors */\n:root {\n  --color-sui-primary: #ff4444;\n  --color-sui-primary-subtle: #ff9999;\n  ...\n}\n\n/* Dark mode - explicit selectors matching the custom-variant definition */\n.dark,\n[data-theme=\"dark\"] {\n  --color-sui-primary: #654321;\n  --color-sui-primary-subtle: #987654;\n  ...\n}\n\n```\n\nPurple / blue accents and dark surfaces in Hedera marketing can be approximated with the defaults already tuned in `styles.css`; adjust `--color-sui-primary`, `--color-sui-accent`, and related tokens to match your approved brand palette.\n\n## Token reference (`@scaffold-hbar-ui/components`)\n\nDefined in [styles.css](https://github.com/buidler-labs/scaffold-hbar-ui/blob/main/packages/components/src/styles.css) (source of truth). Light values live in `@theme`; dark overrides in `@variant dark`.\n\n| Token                               | Role                                                          |\n| ----------------------------------- | ------------------------------------------------------------- |\n| `--font-sui-family`                 | Font stack for all `DefaultStylesWrapper` / `font-sui` usage  |\n| `--color-sui-primary`               | Primary brand / actions                                       |\n| `--color-sui-primary-subtle`        | Subtle surfaces, borders                                      |\n| `--color-sui-primary-neutral`       | Neutral surface                                               |\n| `--color-sui-primary-content`       | Text/icons on primary                                         |\n| `--color-sui-accent`                | Accent                                                        |\n| `--color-sui-base-content`          | Main body text                                                |\n| `--color-sui-success`               | Success                                                       |\n| `--color-sui-warning`               | Warning                                                       |\n| `--color-sui-error`                 | Error (e.g. toasts); inputs may use primary for invalid state |\n| `--color-sui-input-border`          | Input border                                                  |\n| `--color-sui-input-background`      | Input background                                              |\n| `--color-sui-input-text`            | Input text                                                    |\n| `--color-sui-input-placeholder`     | Placeholder                                                   |\n| `--color-sui-input-border-error`    | Invalid input border                                          |\n| `--color-sui-input-border-disabled` | Disabled input border                                         |\n| `--color-sui-skeleton-base`         | Skeleton base                                                 |\n| `--color-sui-skeleton-highlight`    | Skeleton highlight                                            |\n\n## `@scaffold-hbar-ui/debug-contracts`\n\nThat package imports component styles and adds more tokens (e.g. `--color-sui-base-100`, `--color-sui-neutral`, `--color-sui-neutral-content`) for forms and buttons. Override those in your global CSS **after** `@scaffold-hbar-ui/debug-contracts/styles.css` if you use the debugger UI.\n\n## Customizing fonts globally\n\n```css\n@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap\");\n@import \"@scaffold-hbar-ui/components/styles.css\";\n\n:root {\n  --font-sui-family: \"Montserrat\", ui-sans-serif, system-ui, sans-serif;\n}\n```\n\nWith Styrene (licensed) + Montserrat:\n\n```css\n:root {\n  --font-sui-family: \"Styrene A Web\", \"Montserrat\", ui-sans-serif, system-ui, sans-serif;\n}\n```\n\n(Define `@font-face` for Styrene per your license; do not rely on unlicensed third-party font hosts in production.)",
       "path": "docs/pages/components/Theming.mdx"
-    },
-    "index": {
-      "title": "index",
-      "body": "# Components\n\nPre-built React components for common Hedera UI patterns.\n\n## Installation\n\n### Peer Dependencies\n\nInstall the required peer dependencies using your preferred package manager:\n\n:::code-group\n\n```bash [npm]\nnpm install react react-dom @types/react viem wagmi @tanstack/react-query\n```\n\n```bash [pnpm]\npnpm add react react-dom @types/react viem wagmi @tanstack/react-query\n```\n\n```bash [yarn]\nyarn add react react-dom @types/react viem wagmi @tanstack/react-query\n```\n\n:::\n\n### Package Installation\n\nInstall Scaffold Hbar UI components and hooks using your preferred package manager:\n\n:::code-group\n\n```bash [npm]\nnpm install @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks\n```\n\n```bash [pnpm]\npnpm add @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks\n```\n\n```bash [yarn]\nyarn add @scaffold-hbar-ui/components @scaffold-hbar-ui/hooks\n```\n\n:::\n\n### Import Styles\n\nImport the styles in your root component file (`app.tsx` for React or `layout.tsx` for Next.js):\n\n```typescript\nimport \"@scaffold-hbar-ui/components/styles.css\";\n```\n\n### Create wagmi config and setup Tanstack query\n\nhttps://wagmi.sh/react/getting-started#create-config",
-      "path": "docs/pages/components/index.mdx"
     }
   },
   "hooks": {
@@ -236,53 +231,49 @@
     "components": [
       {
         "name": "Address",
-        "description": "import React, { useMemo } from \"react\";"
+        "description": "The `Address` component displays EVM-format addresses with a blockie, copy control, and optional block explorer link (Hedera-aware when `chain` is a Hedera network)."
       },
       {
         "name": "Balance",
-        "description": "import React, { useMemo } from \"react\";"
+        "description": "The `Balance` component displays the native token balance (e.g., ETH, MATIC, HBAR) for an address on a given chain, with support for USD conversion and interactive toggling. On **Hedera** chains (main"
       },
       {
         "name": "BaseInput",
-        "description": "import React from \"react\";"
+        "description": "The `BaseInput` component is a styled input used as the foundation for custom inputs like `HbarInput` and `HederaAddressInput`. It supports prefix and suffix elements, and handles error and disabled s"
       },
       {
         "name": "HbarInput",
-        "description": "import React from \"react\";"
+        "description": "The `HbarInput` component is the primary input for native token/USD amounts. It **defaults to Hedera testnet (HBAR)**. Users can enter a value in HBAR or USD and toggle between them; conversion uses t"
       },
       {
         "name": "HederaAddress",
-        "description": "import React from \"react\";"
+        "description": "The `HederaAddress` component displays a Hedera address with automatic **bidirectional resolution**. Pass a single `value` — either an EVM address (`0x…`) or a native Hedera account ID (`0.0.n`) — and"
       },
       {
         "name": "HederaAddressInput",
-        "description": "import React from \"react\";"
+        "description": "The `HederaAddressInput` component is an input for Hedera that accepts **two formats**: EVM addresses (`0x` + 40 hex characters) and **native Hedera account IDs** (e.g. `0.0.12345`). The **text in the"
       },
       {
         "name": "HederaPortalFaucet",
-        "description": "import { HederaPortalFaucet } from \"@scaffold-hbar-ui/components\";"
+        "description": "Link to the [Hedera Portal testnet faucet](https://portal.hedera.com/faucet):"
       },
       {
         "name": "Styling",
-        "description": "import React, { useMemo } from \"react\";"
+        "description": "Every component has a `style` prop that you can use to pass custom styles to the top-level element of the component."
       },
       {
         "name": "Theming",
-        "description": "import React, { useMemo } from \"react\";"
-      },
-      {
-        "name": "index",
-        "description": "Pre-built React components for common Hedera UI patterns."
+        "description": "Before reading this page, we recommend checking out the [Styling](/components/Styling) page to understand the basics of styling Scaffold-Hbar-UI components."
       }
     ],
     "hooks": [
       {
         "name": "useAddress",
-        "description": "import React from \"react\";"
+        "description": "The `useAddress` hook formats EVM addresses (checksum, short form), builds a **block explorer link** for the given `chain` (HashScan-style paths on Hedera), and generates a **blockie** image URL. Pass"
       },
       {
         "name": "useBalance",
-        "description": "import React, { useState } from \"react\";"
+        "description": "The `useBalance` hook fetches and watches an address balance on a given chain, pairing live USD conversion. For **Hedera** chains, the native currency (HBAR) price is fetched automatically; for other "
       },
       {
         "name": "useCreateToken",
@@ -294,7 +285,7 @@
       },
       {
         "name": "useHbarInput",
-        "description": "import React, { useState } from \"react\";"
+        "description": "The `useHbarInput` hook converts between native token and USD for a given input and display mode. It **defaults to Hedera testnet (HBAR)**. It returns both values, the current native currency price, a"
       },
       {
         "name": "useHederaAccountId",
@@ -320,11 +311,11 @@
     "debugContracts": [
       {
         "name": "Contract",
-        "description": "import React, { useMemo } from \"react\";"
+        "description": "The `Contract` is a UI component for debugging deployed contracts."
       },
       {
         "name": "IntegerInput",
-        "description": "import React from \"react\";"
+        "description": "The `IntegerInput` component provides validation and UX helpers for Solidity integer parameters. It supports all `int` and `uint` bit-sizes, validates signed/unsigned ranges, and includes quick **deci"
       }
     ]
   }
