@@ -1,5 +1,11 @@
 # @scaffold-hbar-ui/hooks
 
+## 2.0.0
+
+### Major Changes
+
+- Small update to home urls
+
 ## 1.1.0
 
 ### Minor Changes

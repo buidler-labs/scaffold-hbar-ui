@@ -1,5 +1,17 @@
 # @scaffold-hbar-ui/debug-contracts
 
+## 3.0.0
+
+### Major Changes
+
+- Small update to home urls
+
+### Patch Changes
+
+- Updated dependencies
+  - @scaffold-hbar-ui/components@3.0.0
+  - @scaffold-hbar-ui/hooks@2.0.0
+
 ## 2.0.0
 
 ### Minor Changes
